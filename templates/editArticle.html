@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- static -->
+    <link rel="stylesheet" href="../static/stylesheet/auth/css/article.min.css">
+    <title>Edit article | Book.Share</title>
+</head>
+<body>
+    <header>
+        <div class="header-back"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-4 offset-lg-1 col-lg-3">
+                    <img src="../static/img/logo.png" alt="" class="logo my-image">
+                </div>
+                <div class="offset-md-1 col-md-4 offset-lg-2 col-lg-3 offset-xl-4 col-xl-2 add">
+                    <a href="">Добавить запись</a>
+                </div>
+                <div class="offset-2 col-5 offset-sm-4 col-sm-4 offset-md-0 col-md-3 col-xl-2">
+                    <span>
+                        <a href="">
+                            Log in
+                        </a>
+                        |
+                        <a href="">
+                            Sign up
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <label class="row title">
+                <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
+                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8">
+            </label>
+            <div class="row subject offset-1 col-10">
+                <span class="tag"><i class="fas fa-times"></i>Русский язык</span>
+                <span class="tag"><i class="fas fa-times"></i>Английский язык</span>
+                <span class="tag"><i class="fas fa-times"></i>Математика</span>
+                <span class="tag"><i class="fas fa-times"></i>Химия</span>
+                <span class="tag"><i class="fas fa-times"></i>Биология</span>
+                <span class="tag"><i class="fas fa-plus"></i></span>
+            </div>
+            <div class="row classroom offset-1 col-10">
+                <span class="tag"><i class="fas fa-times"></i>1 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>2 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>3 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>4 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>5 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>6 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>7 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>8 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>9 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>10 класс</span>
+                <span class="tag"><i class="fas fa-times"></i>11 класс</span>
+                <span class="tag"><i class="fas fa-plus"></i></span>
+            </div>
+        </div>
+    </main>
+    <section class="images">
+        <div class="nav">
+            <hr>
+            <div class="container nav-block">
+                <span>Изображение</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row offset-1 col-10 images-slick">
+                <div class="image-wrap">
+                    <div class="image">
+                        <div class="image-block">
+                            <img src="../static/img/book1.png" alt="" class="my-image">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-wrap">
+                    <div class="image">
+                        <div class="image-block">
+                            <img src="../static/img/book2.png" alt="" class="my-image">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-wrap">
+                    <div class="image">
+                        <div class="image-block">
+                            <img src="../static/img/book3.png" alt="" class="my-image">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-wrap">
+                    <div class="image">
+                        <div class="image-block">
+                            <img src="../static/img/article.png" alt="" class="my-image">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="desc">
+        <div class="nav">
+            <hr>
+            <div class="container nav-block">
+                <span>Описание</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <label class="col-12 offset-lg-1 col-lg-10">
+                    <textarea></textarea>
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-12 offset-lg-1 col-lg-5 cost">
+                    <label class="name" for="costid">Цена</label>
+                    <div class="choose-cost">
+                        <span class="choose money">Платно</span>
+                        <span class="my-toggle">
+                          <input type="checkbox" id="free" class="toggle" style="display:none"/>
+                          <label for="free" class="toggle"><span></span></label>
+                        </span>
+                        <span class="choose free">Бесплатно</span>
+                    </div>
+                    <input type="number" id="costid">
+                    <span class="currency">руб.</span>
+                </div>
+                <label class="col-12 offset-lg-1 col-lg-5 condition">
+                    <span class="name">Состояние</span>
+                    <input type="text">
+                </label>
+            </div>
+        </div>
+    </section>
+    <section class="author">
+        <div class="nav">
+            <hr>
+            <div class="container nav-block">
+                <span>Автор</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="offset-1 col-10 base">
+                    <div class="row no-gutters">
+                        <div class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fas fa-phone-alt"></i>-->
+                                <span>Телефон</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="phone" class="toggle" style="display:none"/>
+                              <label for="phone" class="toggle"><span></span></label>
+                            </span>
+                        </div>
+                        <div class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fas fa-at"></i>-->
+                                <span>E-mail</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="email" class="toggle" style="display:none"/>
+                              <label for="email" class="toggle"><span></span></label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="accounts offset-1 col-10">
+                    <div class="row no-gutters">
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-vk"></i>-->
+                                <span>Вконтакте</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="vk" class="toggle" style="display:none"/>
+                              <label for="vk" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fa fa-facebook"></i>-->
+                                <span>Facebook</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="facebook" class="toggle" style="display:none"/>
+                              <label for="facebook" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-twitter"></i>-->
+                                <span>Twitter</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="twitter" class="toggle" style="display:none"/>
+                              <label for="twitter" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                        <span class="col-8 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-odnoklassniki"></i>-->
+                                <span>Одноклассники</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="odnoklassniki" class="toggle" style="display:none"/>
+                              <label for="odnoklassniki" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="messenger offset-1 col-10">
+                    <div class="row no-gutters">
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-telegram-plane"></i>-->
+                                <span>Telegram</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="telegram" class="toggle" style="display:none"/>
+                              <label for="telegram" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-whatsapp"></i>-->
+                                <span>WhatsApp</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="whatsapp" class="toggle" style="display:none"/>
+                              <label for="whatsapp" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                        <span class="col-6 col-lg-3 toggle-block">
+                            <span>
+                                <!--<i class="fab fa-viber"></i>-->
+                                <span>Viber</span>
+                            </span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="viber" class="toggle" style="display:none"/>
+                              <label for="viber" class="toggle"><span></span></label>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="button-out">
+        <button class="my-button">Сохранить</button>
+    </div>
+    <footer></footer>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Slick -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3b144c854e.js" crossorigin="anonymous"></script>
+    <script>
+        $(".subject").slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            variableWidth: true,
+            adaptiveHeight: true
+        });
+        $(".classroom").slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            variableWidth: true,
+            adaptiveHeight: true
+        });
+        $(".images-slick").slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            variableWidth: true,
+            adaptiveHeight: true
+        });
+    </script>
+</body>
+</html>

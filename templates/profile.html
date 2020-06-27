@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- static -->
+    <link rel="stylesheet" href="../static/stylesheet/auth/css/profile.min.css">
+    <title>Profile | Book.Share</title>
+</head>
+<body>
+    <header>
+        <div class="header-back"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-4 offset-lg-1 col-lg-3">
+                    <img src="../static/img/logo.png" alt="" class="logo my-image">
+                </div>
+                <div class="offset-md-1 col-md-4 offset-lg-2 col-lg-3 offset-xl-4 col-xl-2 add">
+                    <a href="">Добавить запись</a>
+                </div>
+                <div class="offset-2 col-5 offset-sm-4 col-sm-4 offset-md-0 col-md-3 col-xl-2">
+                    <span>
+                        <a href="">
+                            Log in
+                        </a>
+                        |
+                        <a href="">
+                            Sign up
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row justify-content-center add-row">
+                <div class="col-5 add-button">
+                    Добавить запись
+                </div>
+            </div>
+            <div class="row profile no-gutters">
+                <div class="col-12 col-lg-6 profile-block">
+                    <div class="image-block">
+                        <img src="../static/img/profile.png" alt="" class="my-image">
+                    </div>
+                    <span class="name">Фамилия Имя Отчество И ещё одно</span>
+                    <span class="desc">Я отличный человек, а ты как счиаешь</span>
+                    <div class="rating">
+                        <span>Рейтинг</span>
+                        <span class="stars">
+                            <span class="stars-empty">
+                                <i class="far fa-star star-1"></i>
+                                <i class="far fa-star star-2"></i>
+                                <i class="far fa-star star-3"></i>
+                                <i class="far fa-star star-4"></i>
+                                <i class="far fa-star star-5"></i>
+                            </span>
+                            <span class="stars-full">
+                                <span class="star">
+                                    <span class="star-1">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </span>
+                                <span class="star">
+                                    <span class="star-2">
+                                    <i class="fas fa-star"></i>
+                                    </span>
+                                </span>
+                                <span class="star">
+                                    <span class="star-3">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </span>
+                                <span class="star">
+                                    <span class="star-4">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </span>
+                                <span class="star">
+                                    <span class="star-5">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="menu">
+                        <i class="fas fa-cog" title="Настройки"></i>
+                        <i class="fas fa-briefcase" title="Все сделки"></i>
+                        <i class="far fa-comments" title="Написать отзыв"></i>
+                        <i class="far fa-trash-alt" title="Удалить аккаунт"></i>
+                    </div>
+                </div>
+                <div class="col-6 image">
+                    <div class="image-block">
+                        <img src="../static/img/profile.png" alt="" class="my-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="nav">
+        <hr>
+        <div class="container nav-block">
+            <span class="active list-btn" data-list-id="articles" data-list-cls="blocks">Объявления</span>
+            <span class="list-btn" data-list-id="feedback" data-list-cls="blocks">Отзывы</span>
+        </div>
+    </section>
+    <section class="articles list-open-close" data-list="articles">
+        <div class="container">
+            <div class="article row no-gutters">
+                <div class="col-6 image">
+                    <div class="image-block">
+                        <img src="../static/img/article.png" alt="" class="my-image">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="article-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="seen">198</span>
+                        </div>
+                        <h3>Продам учебник, много учебников</h3>
+                        <span class="desc">
+                            Большое описание, с гигантским количестовом символов.
+                            И одним смайликом, думаю он скоро появится
+                        </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                        <div class="image-block">
+                            <img src="../static/img/article.png" alt="" class="my-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article row no-gutters">
+                <div class="col-6 image">
+                    <div class="image-block">
+                        <img src="../static/img/article.png" alt="" class="my-image">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="article-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="seen">198</span>
+                        </div>
+                        <h3>Продам учебник, много учебников</h3>
+                        <span class="desc">
+                            Большое описание, с гигантским количестовом символов.
+                            И одним смайликом, думаю он скоро появится
+                        </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                        <div class="image-block">
+                            <img src="../static/img/article.png" alt="" class="my-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article row no-gutters">
+                <div class="col-6 image">
+                    <div class="image-block">
+                        <img src="../static/img/article.png" alt="" class="my-image">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="article-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="seen">198</span>
+                        </div>
+                        <h3>Продам учебник, много учебников</h3>
+                        <span class="desc">
+                            Большое описание, с гигантским количестовом символов.
+                            И одним смайликом, думаю он скоро появится
+                        </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                        <div class="image-block">
+                            <img src="../static/img/article.png" alt="" class="my-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-out">
+                <button class="my-button">Больше</button>
+            </div>
+        </div>
+    </section>
+    <section class="feedback list-open-close" data-list="feedback">
+        <div class="container">
+            <div class="row feedback-row">
+                <div class="col-12 col-lg-6 feedback-col">
+                    <div class="feedback-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="rating">
+                            <i class="fas fa-star star-1"></i>
+                            <i class="fas fa-star star-2"></i>
+                            <i class="fas fa-star star-3"></i>
+                            <i class="far fa-star star-4"></i>
+                            <i class="far fa-star star-5"></i>
+                        </span>
+                        </div>
+                        <h3>Фио автора отзыва</h3>
+                        <span class="desc">
+                        Большой, конструктивный отзыв.
+                        Но не понятно, была ли сделка, или нет
+                    </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 feedback-col">
+                    <div class="feedback-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="rating">
+                            <i class="fas fa-star star-1"></i>
+                            <i class="fas fa-star star-2"></i>
+                            <i class="fas fa-star star-3"></i>
+                            <i class="far fa-star star-4"></i>
+                            <i class="far fa-star star-5"></i>
+                        </span>
+                        </div>
+                        <h3>Фио автора отзыва</h3>
+                        <span class="desc">
+                        Большой, конструктивный отзыв.
+                        Но не понятно, была ли сделка, или нет
+                    </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 feedback-col">
+                    <div class="feedback-block">
+                        <div class="block-top">
+                            <span class="date">1 января 2020 16:00</span>
+                            <span class="rating">
+                            <i class="fas fa-star star-1"></i>
+                            <i class="fas fa-star star-2"></i>
+                            <i class="fas fa-star star-3"></i>
+                            <i class="far fa-star star-4"></i>
+                            <i class="far fa-star star-5"></i>
+                        </span>
+                        </div>
+                        <h3>Фио автора отзыва</h3>
+                        <span class="desc">
+                        Большой, конструктивный отзыв.
+                        Но не понятно, была ли сделка, или нет
+                    </span>
+                        <button class="my-button">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="button-out">
+                <button class="my-button">Больше</button>
+            </div>
+        </div>
+    </section>
+    <footer></footer>
+    <div class="notification"></div>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Slick -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3b144c854e.js" crossorigin="anonymous"></script>
+    <!-- My scripts -->
+    <script src="../static/javascript/base.js"></script>
+    <script src="../static/javascript/profile.js"></script>
+</body>
+</html>

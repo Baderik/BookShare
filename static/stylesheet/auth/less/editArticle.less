@@ -1,0 +1,261 @@
+@import "base.less";
+@import "socialIcons.less";
+@import "toggle.less";
+
+
+// Colors
+@close: #F44336;
+// Animation
+@keyframes close-out {
+  from {
+    color: @close;
+  }
+  to {
+    color: @font
+  }
+}
+@keyframes close {
+  from {
+    color: @font;
+  }
+  to {
+    color: @close;
+  }
+}
+// Base
+.nav {
+    margin-bottom: 3rem;
+    position: relative;
+    &-block {
+      margin-top: 0 !important;
+      background-color: @dark;
+      z-index: 2;
+    }
+    hr {
+      position: absolute;
+      top: calc(50% - 0.15rem);
+      background-color: @font;
+      height: 0.3rem;
+      width: 100%;
+      margin: 0;
+    }
+    span {
+      .med();
+      margin: 0;
+      font-size: 3rem;
+      color: @interface;
+    }
+}
+input {
+  .med();
+  font-size: 1.7rem;
+  color:@font;
+  padding: 0 2rem;
+  background-color: rgb(@dark, 40%);
+  border: 0.3rem solid @dark-light;
+  border-radius: 1rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+// Main
+.title {
+  .med();
+  font-size: 2rem;
+  input {
+    .med();
+    font-size: 2rem;
+    margin-top: 0.5rem;
+  }
+}
+.images {
+  margin-top: 6rem;
+}
+.subject {
+  margin-top: 4rem;
+}
+.classroom {
+  margin-top: 1rem;
+}
+.tag {
+  .reg();
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 4rem;
+  line-height: 3.6rem;
+  border: @dark-light solid 0.3rem;
+  border-radius: 1rem;
+  background-color: rgb(@dark, 40%);
+  color: @font;
+  font-size: 1.7rem;
+  padding: 0 1rem;
+  margin: 0 0.25rem;
+  cursor: pointer;
+  .fa-times {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: @close;
+    text-align: center;
+    display: none;
+    background-color: @dark;
+    border-radius: 1rem;
+    line-height: 3.5rem;
+  }
+  &:not(:hover) {
+    .fa-plus {
+      animation: interface-out-blur 0.5s forwards;
+    }
+  }
+  &:hover {
+    .fa-plus {
+      animation: interface-blur 0.5s forwards;
+    }
+    .fa-times {
+      display: inline-block;
+    }
+  }
+}
+// Images
+.images-slick {
+  * {
+    margin-right: 1rem;
+  }
+  .image-wrap {
+    display: table;
+    height: 50rem; // Нужно менять относительно максимального изображения
+    .image {
+      display: table-cell;
+      vertical-align: middle;
+      &-block {
+        position: relative;
+        .fa-times {
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          color: @font;
+          font-size: 2rem;
+          cursor: pointer;
+          //z-index: 2;
+          &:not(:hover) {
+            animation: close-out 0.5s forwards;
+          }
+          &:hover {
+            animation: close 0.5s forwards;
+          }
+        }
+      }
+    }
+  }
+}
+// Description
+textarea {
+  .med();
+  font-size: 1.7rem;
+  background-color: @dark-light;
+  color: @font;
+  width: 100%;
+  height: 50rem;
+  resize: none;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 7rem;
+}
+.desc {
+  .name {
+    .med();
+    font-size: 2rem;
+    display: inline-block;
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+}
+.currency {
+  .med();
+  font-size: 1.7rem;
+  color:@font;
+}
+.condition, .cost {
+  input {
+    margin-left: 8rem;
+    width: 16rem;
+  }
+}
+.choose-cost {
+  margin-bottom: 3rem;
+  margin-left: 5rem;
+  height: 3rem;
+}
+.choose {
+  .med();
+  font-size: 1.7rem;
+  line-height: 3rem;
+  display: inline-block;
+}
+.my-toggle {
+  margin: 0 1.25rem;
+}
+.free {
+  text-decoration: underline;
+}
+// Author
+.toggle-block {
+  .med();
+  font-size: 1.7rem;
+  height: 3rem;
+  //margin-right: 5rem;
+  span {
+    line-height: 3rem;
+    display: inline-block;
+  }
+}
+.accounts {
+  margin-top: 3rem;
+}
+.messenger {
+  margin-top: 1.5rem;
+}
+i {
+  color: @blur;
+  line-height: 3rem;
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+// Button
+.button-out {
+  margin-top: 10rem;
+}
+// Extra large
+@media (min-width: 1200px) {
+
+}
+// Large
+@media (max-width: 1199px) {
+
+}
+// Medium
+@media (max-width: 991px) {
+  .desc {
+    textarea {
+        margin-bottom: 5rem;
+    }
+    .name {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+  //.images-slick {
+  //  .image-wrap {
+  //    max-width: 100%;
+  //  }
+  //}
+}
+// Small
+@media (max-width: 767px) {
+
+}
+// Extra small
+@media (max-width: 575px) {
+
+}
