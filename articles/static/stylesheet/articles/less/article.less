@@ -1,0 +1,126 @@
+@import "editArticle.less";
+
+// Main
+.tag {
+  &:not(:hover){
+    animation: interface-out-color 0.5s forwards;
+    i {
+      animation: none;
+    }
+  }
+  &:hover {
+    animation: interface-color 0.5s forwards;
+    i {
+      animation: none;
+    }
+  }
+}
+.menu {
+  text-align: right;
+  margin-bottom: 3rem;
+  cursor: default;
+  i {
+    cursor: pointer;
+    font-size: 3rem;
+  }
+}
+// Images
+.image {
+  &-block {
+    img {
+      cursor: zoom-in;
+    }
+  }
+}
+
+// Author
+.author {
+  i {
+    font-size: 2rem;
+  }
+  &-block {
+    span, a, a:hover {
+      .med();
+      font-size: 1.7rem;
+      line-height: 3rem;
+      display: inline-block;
+      color: @font;
+      text-decoration: none;
+    }
+    .blur {
+      margin: 1rem 0;
+      color: @blur;
+      text-align: left;
+    }
+    .icon {
+      cursor: pointer;
+      &:not(:hover){
+        .fa-phone-alt {
+          animation: icon-phone-out 0.5s forwards;
+        }
+        .fa-at {
+          animation: icon-at-out 0.5s forwards;
+        }
+        .fa-vk {
+          animation: icon-vk-out 0.5s forwards;
+        }
+        .fa-facebook {
+          animation: icon-facebook-out 0.5s forwards;
+        }
+        .fa-twitter {
+          animation: icon-twitter-out 0.5s forwards;
+        }
+        .fa-odnoklassniki {
+          animation: icon-odnoklassniki-out 0.5s forwards;
+        }
+        .fa-telegram-plane {
+          animation: icon-telegram-out 0.5s forwards;
+        }
+        .fa-whatsapp {
+          animation: icon-whatsapp-out 0.5s forwards;
+        }
+        .fa-viber {
+          animation: icon-viber-out 0.5s forwards;
+        }
+        .fa-address-card {
+          animation: interface-out-color 0.5s forwards;
+        }
+    }
+      &:hover {
+        .fa-phone-alt {
+          animation: icon-phone 0.5s forwards;
+        }
+        .fa-at {
+          animation: icon-at 0.5s forwards;
+        }
+        .fa-vk {
+          animation: icon-vk 0.5s forwards;
+        }
+        .fa-facebook {
+          animation: icon-facebook 0.5s forwards;
+        }
+        .fa-twitter {
+          animation: icon-twitter 0.5s forwards;
+        }
+        .fa-odnoklassniki {
+          animation: icon-odnoklassniki 0.5s forwards;
+        }
+        .fa-telegram-plane {
+          animation: icon-telegram 0.5s forwards;
+        }
+        .fa-whatsapp {
+          animation: icon-whatsapp 0.5s forwards;
+        }
+        .fa-viber {
+          animation: icon-viber 0.5s forwards;
+        }
+        .fa-address-card {
+          animation: interface-color 0.5s forwards;
+        }
+      }
+    }
+    .date {
+      cursor: text;
+    }
+  }
+}

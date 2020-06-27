@@ -1,43 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- slick -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- static -->
-    <link rel="stylesheet" href="../static/stylesheet/auth/css/search.min.css">
-    <title>Main | Book.Share</title>
-</head>
-<body>
-    <header>
-        <div class="header-back"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-5 col-sm-4 offset-lg-1 col-lg-3">
-                    <img src="../static/img/logo.png" alt="" class="logo my-image">
-                </div>
-                <div class="offset-md-1 col-md-4 offset-lg-2 col-lg-3 offset-xl-4 col-xl-2 add">
-                    <a href="">Добавить запись</a>
-                </div>
-                <div class="offset-2 col-5 offset-sm-4 col-sm-4 offset-md-0 col-md-3 col-xl-2">
-                    <span>
-                        <a href="">
-                            Log in
-                        </a>
-                        |
-                        <a href="">
-                            Sign up
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </header>
+{% extends "base.html" %}
+{% load static %}
+{% block Head %}
+    <link rel="stylesheet" href="{% static 'stylesheet/articles/css/search.min.css' %}">
+{% endblock %}
+{% block Title %}Search{% endblock %}
+{% block Content %}
     <main>
         <div class="container">
             <div class="row quote">
@@ -97,7 +64,7 @@
             <div class="article row no-gutters">
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="../static/img/article.png" alt="" class="my-image">
+                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -111,12 +78,12 @@
                             Большое описание, с гигантским количестовом символов.
                             И одним смайликом, думаю он скоро появится
                         </span>
-                        <button class="my-button">
+                        <button class="my-button link" data-link-href="/articles/article">
                             Подробнее
                         </button>
                         <br>
                         <div class="image-block">
-                            <img src="../static/img/article.png" alt="" class="my-image">
+                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                         </div>
                     </div>
                 </div>
@@ -124,7 +91,7 @@
             <div class="article row no-gutters">
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="../static/img/article.png" alt="" class="my-image">
+                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -142,7 +109,7 @@
                             Подробнее
                         </button>
                         <div class="image-block">
-                            <img src="../static/img/article.png" alt="" class="my-image">
+                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                         </div>
                     </div>
                 </div>
@@ -150,7 +117,7 @@
             <div class="article row no-gutters">
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="../static/img/article.png" alt="" class="my-image">
+                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -168,7 +135,7 @@
                             Подробнее
                         </button>
                         <div class="image-block">
-                            <img src="../static/img/article.png" alt="" class="my-image">
+                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
                         </div>
                     </div>
                 </div>
@@ -178,30 +145,7 @@
             </div>
         </div>
     </section>
-    <footer></footer>
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Slick -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/3b144c854e.js" crossorigin="anonymous"></script>
-    <script>
-        $(".subject").slick({
-            dots: false,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 1,
-            variableWidth: true,
-            adaptiveHeight: true
-        });
-        $(".classroom").slick({
-            dots: false,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 1,
-            variableWidth: true,
-            adaptiveHeight: true
-        });
-    </script>
-</body>
-</html>
+{% endblock %}
+{% block Footer %}
+    <script src="{% static 'javascript/articles/search.js' %}"></script>
+{% endblock %}
