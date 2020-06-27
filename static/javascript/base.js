@@ -1,5 +1,6 @@
 $(function () {
-    $(".list-btn").click(listPressed)
+    $(".list-btn").click(listPressed);
+    $(".link").click(link);
 })
 function listPressed(event) {
     if ($(this).hasClass("active")) {
@@ -27,4 +28,8 @@ function addNotification(txt){
         },
         2000
     )
+}
+// Link
+function link(event) {
+    window.location.href = $(this).data("link-href");
 }
