@@ -57,6 +57,9 @@ class IndexView(View):
 class LoginView(View):
     @staticmethod
     def get(request):
+        if request.user.is_authenticated:
+            return redirect("/")
+
         return render(request, "auth/login.html", {"form": LoginForm()})
 
     @staticmethod
@@ -80,7 +83,7 @@ class LoginView(View):
                     url = "/people/settings/"
 
                     if user.is_active:
-                        url = "/post"
+                        url = "/"
 
                     result["code"] = "303"
                     result["message"] = "Вам туда"
@@ -109,4 +112,14 @@ class LoginView(View):
 class SignUpView(View):
     @staticmethod
     def get(request):
+        if request.user.is_authenticated:
+            return redirect("/")
+
         return render(request, "auth/register.html", {"form": RegisterForm()})
+
+
+class LogoutView(View):
+    @staticmethod
+    def get(request):
+        logout(request)
+        return redirect("/")
