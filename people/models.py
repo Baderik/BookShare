@@ -11,6 +11,7 @@ class Profile(models.Model):
     surname = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
     middle_name = models.CharField(max_length=64)
+    about = models.TextField(default="")
     phone = models.CharField(max_length=11, null=True, default=None)
     image = models.IntegerField(default=0)
 
