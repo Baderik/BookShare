@@ -97,7 +97,7 @@
   }
 }
 // Base
-button {
+button, input {
   &:active, &:focus {
     outline: none;
   }
@@ -241,4 +241,8 @@ footer {
       margin: 0;
     }
   }
+}
+
+form input:invalid:not(:placeholder-shown) {
+  box-shadow: 0 0 0.5rem red;
 }
