@@ -52,7 +52,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ["email", "password"]
+    REQUIRED_FIELDS = []
     objects = UserManager()
 
     def get_full_name(self):
