@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-# Create your views here.
+
+from authentication.forms import LoginForm, RegisterForm
 
 
 class IndexView(View):
@@ -12,10 +13,10 @@ class IndexView(View):
 class LoginView(View):
     @staticmethod
     def get(request):
-        return render(request, "auth/login.html")
+        return render(request, "auth/login.html", {"form": LoginForm()})
 
 
 class SignUpView(View):
     @staticmethod
     def get(request):
-        return render(request, "auth/register.html")
+        return render(request, "auth/register.html", {"form": RegisterForm()})

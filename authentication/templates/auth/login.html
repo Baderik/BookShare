@@ -22,8 +22,9 @@
                     Вход
                 </span>
                     <form action="">
-                        <input type="text" placeholder="Почта">
-                        <input type="text" placeholder="Пароль">
+                        {% csrf_token %}
+                        {{ form.email }}
+                        {{ form.password }}
                         <button class="my-button">Войти</button>
                     </form>
                     <div class="social">

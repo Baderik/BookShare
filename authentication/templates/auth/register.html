@@ -25,7 +25,8 @@
                     Регистрация
                 </span>
                     <form action="">
-                        <input type="text" placeholder="Почта">
+                        {% csrf_token %}
+                        {{ form.email }}
                         <span class="blur">
                             Регистрируясь, вы соглашаетесь
                             с нашей <a href="">Политикой конфиденциальности</a>
