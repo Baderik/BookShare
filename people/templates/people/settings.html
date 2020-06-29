@@ -7,8 +7,18 @@
 {% block Content %}
     <main>
         <div class="container">
+            <div class="row">
+                <div class="message col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                    <span>
+                        Проверьте правильно ли заполнены поля
+                    </span>
+                </div>
+            </div>
             <div class="row profile no-gutters">
-                <form class="col-12 col-lg-6 profile-block">
+                <form class="col-12 col-lg-6 profile-block"
+                      action="/user/{{ user.id }}/"
+                      method="POST">
+                    {% csrf_token %}
                     <div class="main">
                         <div class="image-block">
                             <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
@@ -46,8 +56,7 @@
                         </label>
                         <label>
                             Телефон:
-
-                            <input type="text" placeholder="Мой телефон" class="phone">
+                            {{ form.phone }}
                         </label>
                     </div>
                     <div class="social">
@@ -64,9 +73,25 @@
                             <i class="fa fa-odnoklassniki"></i>
                         </div>
                     </div>
+                    <div class="password">
+                        <div class="nav">
+                            <hr>
+                            <span class="title">Пароль</span>
+                        </div>
+                        <label>
+                            Новый пароль:
+                            {{ form.password }}
+                            <!--<input type="text" placeholder="Мой email">-->
+                        </label>
+                        <label>
+                            Повтори пароль:
+                            {{ form.password_again }}
+                        </label>
+                    </div>
                     <div class="button-out">
                         <button class="my-button">Сохранить</button>
                     </div>
+                    {{ form.image }}
                 </form>
                 <div class="col-6 image">
                     <div class="image-block">

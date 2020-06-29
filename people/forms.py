@@ -7,10 +7,10 @@ class SettingsForm(forms.ModelForm):
     email = forms.EmailField()
     password = forms.CharField(
         required=False,
-        widget=forms.PasswordInput(attrs={"placeholder": "Новый пароль"}))
+        widget=forms.PasswordInput(attrs={"placeholder": "Классный пароль"}))
     password_again = forms.CharField(
         required=False,
-        widget=forms.PasswordInput(attrs={"placeholder": "Повтори пароль"}))
+        widget=forms.PasswordInput(attrs={"placeholder": "Ещё раз"}))
 
     email.widget.attrs["placeholder"] = "Моя почта"
 

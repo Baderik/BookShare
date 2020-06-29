@@ -1,6 +1,18 @@
 @import "../../../../../static/stylesheet/less/base.less";
 @import "../../../../../static/stylesheet/less/socialIcons.less";
 
+// Message
+.message {
+  display: none;
+  text-align: center;
+  margin-bottom: 2rem;
+  span {
+    background-color: rgb(@dark, 40%);
+    color: @font;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+  }
+}
 // Main
 .profile {
   .image {
@@ -59,7 +71,7 @@
     }
   }
 }
-.connect, .social {
+.connect, .social, .password {
   display: block;
   margin: 3rem 0;
 
@@ -85,6 +97,14 @@
     font-size: 2rem;
     z-index: 2;
     background-color: @dark-light;
+  }
+}
+// password
+.password {
+  label {
+    input {
+      width: 60%;
+    }
   }
 }
 // Extra large
