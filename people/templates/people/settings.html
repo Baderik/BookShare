@@ -15,19 +15,23 @@
                         </div>
                         <label>
                             Фамилия:
-                            <input type="text" placeholder="Моя фамилия">
+                            {{ form.surname }}
+                            <!--<input type="text" placeholder="Моя фамилия">-->
                         </label>
                         <label>
                             Имя:
-                            <input type="text" placeholder="Моё имя">
+                            {{ form.name }}
+                            <!--<input type="text" placeholder="Моё имя">-->
                         </label>
                         <label>
                             Отчество:
-                            <input type="text" placeholder="Моё отчество">
+                            {{ form.middle_name }}
+                            <!--<input type="text" placeholder="Моё отчество">-->
                         </label>
                         <label>
                             Обо мне:
-                            <textarea placeholder="Пару слов"></textarea>
+                            {{ form.about }}
+                            <!--<textarea placeholder="Пару слов"></textarea>-->
                         </label>
                     </div>
                     <div class="connect">
@@ -37,11 +41,13 @@
                         </div>
                         <label>
                             E-mail:
-                            <input type="text" placeholder="Мой email">
+                            {{ form.email }}
+                            <!--<input type="text" placeholder="Мой email">-->
                         </label>
                         <label>
                             Телефон:
-                            <input type="text" placeholder="Мой телефон">
+
+                            <input type="text" placeholder="Мой телефон" class="phone">
                         </label>
                     </div>
                     <div class="social">
@@ -70,4 +76,8 @@
             </div>
         </div>
     </main>
+{% endblock %}
+{% block Footer %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'javascript/people/settings.js' %}"></script>
 {% endblock %}

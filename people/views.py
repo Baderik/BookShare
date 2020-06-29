@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 
+from people.forms import SettingsForm
+
 
 class IndexView(View):
     @staticmethod
@@ -17,4 +19,5 @@ class ProfileView(View):
 class SettingsView(View):
     @staticmethod
     def get(request):
-        return render(request, "people/settings.html")
+        return render(request, "people/settings.html",
+                      {"form": SettingsForm()})
