@@ -33,3 +33,15 @@ function addNotification(txt){
 function link(event) {
     window.location.href = $(this).data("link-href");
 }
+// FormSendler
+function formRequest(event, success=function (response) {}, error=function (response) {}) {
+    event.preventDefault();
+    $.ajax({
+        url: $(event.currentTarget).attr("action"),
+        method: $(event.currentTarget).attr("method"),
+        data: $(event.currentTarget).serialize(),
+        dataType: "json",
+        success: success,
+        error: error
+    })
+}

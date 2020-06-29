@@ -1,12 +1,7 @@
 $(function () {
-    $("form").on("submit", function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: $(this).attr("action"),
-            method: $(this).attr("method"),
-            data: $(this).serialize(),
-            dataType: "json",
-            success: function (response) {
+    $("form").on("submit", function(event) {
+        formRequest(event,
+            function (response) {
                 let color = ""
                 if (response.code !== "303" && response.code !== "200") {
                     color = "red";
@@ -16,11 +11,11 @@ $(function () {
                     location.href = response.location;
                 }
             },
-            error: function (response) {
+            function (response) {
                 setMessage("Произошла ошибка", "red")
             }
-        })
-    })
+            )
+    });
 })
 function setMessage(text, color) {
     let message = $(".pre-auth span");
