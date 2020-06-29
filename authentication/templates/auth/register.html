@@ -24,7 +24,7 @@
                 <span class="title">
                     Регистрация
                 </span>
-                    <form action="">
+                    <form action="/auth" method="POST">
                         {% csrf_token %}
                         {{ form.email }}
                         <span class="blur">

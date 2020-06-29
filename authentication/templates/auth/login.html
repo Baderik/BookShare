@@ -21,7 +21,7 @@
                 <span class="title">
                     Вход
                 </span>
-                    <form action="">
+                    <form action="" method="POST">
                         {% csrf_token %}
                         {{ form.email }}
                         {{ form.password }}
