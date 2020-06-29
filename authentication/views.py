@@ -12,6 +12,47 @@ class IndexView(View):
     def get(request):
         return redirect("login/")
 
+    @staticmethod
+    def post(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("/")
+
+        result = {"code": "500", "message": "Произошла ошибка"}
+
+        form = RegisterForm(request.POST)
+
+        if not form.is_valid():
+            result["code"] = "400"
+            result["message"] = "Проверьте правильно ли вы заполнили поля"
+
+            for field in ("email",):
+                result[field] = "1" \
+                    if form.cleaned_data.get(field, "") \
+                    else ""
+
+            return JsonResponse(result)
+
+        email = form.cleaned_data.get("email", "")
+        user = User.objects.get(email=email)
+
+        if user is not None:
+            result["code"] = "400"
+            result["message"] = "Пользователь с такой почтой уже существует"
+
+        else:
+            user = User(email=email)
+
+            password = User.objects.make_random_password()
+            user.set_password(password)
+            user.save()
+
+            print(f"Password: {password}")
+
+            result["code"] = "200"
+            result["message"] = "На вашу почту отправленно сообщение с инстукцией."
+
+        return JsonResponse(result)
+
 
 class LoginView(View):
     @staticmethod
@@ -69,44 +110,3 @@ class SignUpView(View):
     @staticmethod
     def get(request):
         return render(request, "auth/register.html", {"form": RegisterForm()})
-
-    @staticmethod
-    def post(request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect("/")
-
-        result = {"code": "500", "message": "Произошла ошибка"}
-
-        form = RegisterForm(request.POST)
-
-        if not form.is_valid():
-            result["code"] = "400"
-            result["message"] = "Проверьте правильно ли вы заполнили поля"
-
-            for field in ("email",):
-                result[field] = "1" \
-                    if form.cleaned_data.get(field, "") \
-                    else ""
-
-            return result
-
-        email = form.cleaned_data.get("email", "")
-        user = User.objects.get(email=email)
-
-        if user is not None:
-            result["code"] = "400"
-            result["message"] = "Пользователь с такой почтой уже существует"
-
-        else:
-            user = User(email=email)
-
-            password = User.objects.make_random_password()
-            user.set_password(password)
-            user.save()
-
-            print(f"Password: {password}")
-
-            result["code"] = "200"
-            result["message"] = "На вашу почту отправленно сообщение с инстукцией."
-
-        return JsonResponse(result)
