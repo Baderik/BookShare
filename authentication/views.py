@@ -60,7 +60,10 @@ class LoginView(View):
         if request.user.is_authenticated:
             return redirect("/")
 
-        return render(request, "auth/login.html", {"form": LoginForm()})
+        return render(request, "auth/login.html", {
+            "form": LoginForm(),
+            "user": request.user
+        })
 
     @staticmethod
     def post(request, *args, **kwargs):
@@ -115,7 +118,10 @@ class SignUpView(View):
         if request.user.is_authenticated:
             return redirect("/")
 
-        return render(request, "auth/register.html", {"form": RegisterForm()})
+        return render(request, "auth/register.html", {
+            "form": RegisterForm(),
+            "user": request.user
+        })
 
 
 class LogoutView(View):

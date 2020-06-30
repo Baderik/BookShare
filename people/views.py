@@ -14,7 +14,9 @@ class IndexView(View):
 class ProfileView(View):
     @staticmethod
     def get(request, uid):
-        return render(request, "people/profile.html")
+        return render(request, "people/profile.html", {
+            "user": request.user
+        })
 
     @staticmethod
     def post(request, uid, *args, **kwargs):
@@ -74,6 +76,8 @@ class SettingsView(View):
                                   "image": request.user.profile.image
                               }
                           ),
-                              "email": request.user.is_active_email})
+                              "email": request.user.is_active_email,
+                              "user": request.user
+                          })
 
         return redirect("/")

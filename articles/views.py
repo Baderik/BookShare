@@ -11,22 +11,34 @@ class IndexView(View):
 class SearchView(View):
     @staticmethod
     def get(request):
-        return render(request, "articles/search.html")
+        return render(request, "articles/search.html",
+                      {
+                          "user": request.user
+                      })
 
 
 class ArticleView(View):
     @staticmethod
     def get(request):
-        return render(request, "articles/article.html")
+        return render(request, "articles/article.html",
+                      {
+                          "user": request.user
+                      })
 
 
 class AddView(View):
     @staticmethod
     def get(request):
-        return render(request, "articles/editArticle.html")
+        return render(request, "articles/editArticle.html",
+                      {
+                          "user": request.user
+                      })
 
 
 class EditView(View):
     @staticmethod
     def get(request):
-        return render(request, "articles/editArticle.html")
+        return render(request, "articles/editArticle.html",
+                      {
+                          "user": request.user
+                      })
