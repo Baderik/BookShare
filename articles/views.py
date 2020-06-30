@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 
+from articles.forms import ArticleForm
 from articles.models import Article
 
 
@@ -38,13 +39,14 @@ class AddView(View):
     def get(request):
         return render(request, "articles/editArticle.html",
                       {
-                          "user": request.user
+                          "user": request.user,
+                          "form": ArticleForm()
                       })
 
 
 class EditView(View):
     @staticmethod
-    def get(request):
+    def get(request, aid):
         return render(request, "articles/editArticle.html",
                       {
                           "user": request.user
