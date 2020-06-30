@@ -108,7 +108,7 @@
                 </div>
                 <label class="col-12 offset-lg-1 col-lg-5 condition">
                     <span class="name">Состояние</span>
-                    <input type="text">
+                    {{ form.condition }}
                 </label>
             </div>
         </div>
@@ -126,18 +126,19 @@
                     <div class="row no-gutters">
                         <div class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fas fa-phone-alt"></i>-->
-                                <span>Телефон</span>
+                                Телефон
                             </span>
                             <span class="my-toggle">
-                              <input type="checkbox" id="phone" class="toggle"/>
+                              <input type="checkbox" id="phone" class="toggle"
+                                     data-disabled-title="Вы не указали номер телефона"
+                              {% if not user.profile.phone %}disabled{% endif %}
+                              />
                               <label for="phone" class="toggle"><span></span></label>
                             </span>
                         </div>
                         <div class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fas fa-at"></i>-->
-                                <span>E-mail</span>
+                                E-mail
                             </span>
                             <span class="my-toggle">
                               <input type="checkbox" id="email" class="toggle"/>
@@ -152,8 +153,7 @@
                     <div class="row no-gutters">
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-vk"></i>-->
-                                <span>Вконтакте</span>
+                                Вконтакте
                             </span>
                             <span class="my-toggle">
                               <input type="checkbox" id="vk" class="toggle"/>
@@ -162,8 +162,7 @@
                         </span>
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fa fa-facebook"></i>-->
-                                <span>Facebook</span>
+                                Facebook
                             </span>
                             <span class="my-toggle">
                               <input type="checkbox" id="facebook" class="toggle"/>
@@ -172,8 +171,7 @@
                         </span>
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-twitter"></i>-->
-                                <span>Twitter</span>
+                                Twitter
                             </span>
                             <span class="my-toggle">
                               <input type="checkbox" id="twitter" class="toggle"/>
@@ -182,8 +180,7 @@
                         </span>
                         <span class="col-8 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-odnoklassniki"></i>-->
-                                <span>Одноклассники</span>
+                                Одноклассники
                             </span>
                             <span class="my-toggle">
                               <input type="checkbox" id="odnoklassniki" class="toggle"/>
@@ -198,31 +195,34 @@
                     <div class="row no-gutters">
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-telegram-plane"></i>-->
-                                <span>Telegram</span>
+                                Telegram
                             </span>
                             <span class="my-toggle">
-                              <input type="checkbox" id="telegram" class="toggle"/>
+                              <input type="checkbox" id="telegram" class="toggle"
+                              data-disabled-title="Вы не указали номер телефона"
+                              />
                               <label for="telegram" class="toggle"><span></span></label>
                             </span>
                         </span>
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-whatsapp"></i>-->
-                                <span>WhatsApp</span>
+                                WhatsApp
                             </span>
                             <span class="my-toggle">
-                              <input type="checkbox" id="whatsapp" class="toggle"/>
+                              <input type="checkbox" id="whatsapp" class="toggle"
+                              data-disabled-title="Вы не указали номер телефона"
+                              />
                               <label for="whatsapp" class="toggle"><span></span></label>
                             </span>
                         </span>
                         <span class="col-6 col-lg-3 toggle-block">
                             <span>
-                                <!--<i class="fab fa-viber"></i>-->
-                                <span>Viber</span>
+                                Viber
                             </span>
                             <span class="my-toggle">
-                              <input type="checkbox" id="viber" class="toggle"/>
+                              <input type="checkbox" id="viber" class="toggle"
+                              data-disabled-title="Вы не указали номер телефона"
+                              />
                               <label for="viber" class="toggle"><span></span></label>
                             </span>
                         </span>
@@ -234,6 +234,10 @@
     <div class="button-out">
         <button class="my-button">Сохранить</button>
     </div>
+    <form action="../" method="POST" class="article-form">
+        {% csrf_token %}
+        {{ form }}
+    </form>
 {% endblock %}
 {% block Footer %}
     <script src="{% static 'javascript/articles/editArticle.js' %}"></script>

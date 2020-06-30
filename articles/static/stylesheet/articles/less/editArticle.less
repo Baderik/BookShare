@@ -49,7 +49,7 @@
       color: @interface;
     }
 }
-input {
+input, select {
   .med();
   font-size: 1.7rem;
   color:@font;
@@ -181,7 +181,7 @@ textarea {
   color:@font;
 }
 .condition, .cost {
-  input {
+  input, select {
     margin-left: 8rem;
     width: 16rem;
   }
@@ -212,6 +212,9 @@ textarea {
   span {
     line-height: 3rem;
     display: inline-block;
+    &.disabled {
+      color: @blur;
+    }
   }
 }
 .accounts {
@@ -229,6 +232,10 @@ i {
 // Button
 .button-out {
   margin-top: 10rem;
+}
+// Form
+.article-form {
+  display: none;
 }
 // Extra large
 @media (min-width: 1200px) {
