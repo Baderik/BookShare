@@ -44,7 +44,8 @@ class ProfileView(View):
                 message.append("Ваш пароль изменён")
 
             else:
-                return JsonResponse({"code": "400", "message": "Пароли не совпадают"})
+                return JsonResponse({"code": "400",
+                                     "message": "Пароли не совпадают"})
 
         request.user.is_active = True
         request.user.save()
@@ -52,7 +53,9 @@ class ProfileView(View):
         if not message:
             message = ["Сохранено"]
 
-        return JsonResponse({"code": "200", "message": "\n".join(message)})
+        return JsonResponse({"code": "200",
+                             "message": "\n".join(message),
+                             "email": request.user.is_active_email})
 
 
 class SettingsView(View):
@@ -60,6 +63,17 @@ class SettingsView(View):
     def get(request):
         if request.user.is_authenticated:
             return render(request, "people/settings.html",
-                          {"form": SettingsForm()})
+                          {"form": SettingsForm(
+                              initial={
+                                  "surname": request.user.profile.surname,
+                                  "name": request.user.profile.name,
+                                  "middle_name": request.user.profile.middle_name,
+                                  "about": request.user.profile.about,
+                                  "email": request.user.email,
+                                  "phone": request.user.profile.phone,
+                                  "image": request.user.profile.image
+                              }
+                          ),
+                              "email": request.user.is_active_email})
 
         return redirect("/")
