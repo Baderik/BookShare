@@ -1,6 +1,4 @@
 $(function(){
-    let emailBase = $(".email input").val();
-
     $("#id_phone").mask("+7 (000) 000-00-00");
     $("form").on("submit", function(event) {
         formRequest(event,
@@ -12,6 +10,15 @@ $(function(){
                 setMessage(response.message, color)
                 if (response.code === "303") {
                     location.href = response.location;
+                }
+                if (response.code === "200") {
+                    $(".email .accept").hide();
+                    $(".email .times").hide();
+                    $(".email .edit").hide();
+                    emailBase = $(".email input").val();
+                    emailAccept = response.email;
+                    if (emailAccept) $(".email .accept").show();
+                    else $(".email .times").show();
                 }
             },
             function (response) {
@@ -26,7 +33,7 @@ $(function(){
         if ($(".email input").val() != emailBase) $(".email .edit").show();
         else {
             if (emailAccept) $(".email .accept").show();
-            else $(".email .times").hide();
+            else $(".email .times").show();
         }
    })
 });

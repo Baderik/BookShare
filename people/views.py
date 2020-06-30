@@ -30,7 +30,7 @@ class ProfileView(View):
         message = []
 
         if request.user.email != form.cleaned_data["email"]:
-            if get_user_model().objects.get(email=form.cleaned_data["email"]):
+            if get_user_model().objects.filter(email=form.cleaned_data["email"]):
                 return JsonResponse({"code": "400",
                                      "message": "Эту почту уже кто-то использует"})
 

@@ -120,6 +120,7 @@
 {% block Footer %}
     <script>
         let emailAccept = {% if email %}true{% else %}false{% endif %} ;
+        let emailBase = "{{ form.email.value }}";
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{% static 'javascript/people/settings.js' %}"></script>
