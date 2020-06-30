@@ -17,8 +17,20 @@
                     <div class="image-block">
                         <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
                     </div>
-                    <span class="name">Фамилия Имя Отчество И ещё одно</span>
-                    <span class="desc">Я отличный человек, а ты как счиаешь</span>
+                    <span class="name">
+                    {% if owner.is_active %}
+                        {{ owner.profile.surname }} {{ owner.profile.name }} {{ owner.profile.middle_name }}
+                    {% else %}
+                        Пользователя ещё нет
+                    {% endif %}
+                    </span>
+                    <span class="desc">
+                    {% if owner.is_active %}
+                        {{ owner.profile.about }}
+                    {% else %}
+                        Надеемся он скоро прибудет <i class="fas fa-subway"></i>
+                    {% endif %}
+                    </span>
                     <div class="rating">
                         <span>Рейтинг</span>
                         <span class="stars">
@@ -59,12 +71,19 @@
                         </span>
                     </div>
                     <div class="menu">
-                        <i class="fas fa-cog link" title="Настройки" data-link-href="../settings"></i>
-                        <i class="fas fa-briefcase" title="Все сделки"></i>
+                    {% if is_owner %}
+                        <i class="fas fa-cog link" title="Настройки"
+                           data-link-href="../settings"></i>
+                    {% endif %}
+                        <i class="fas fa-briefcase"
+                           title="{% if is_owner %}Все сделки{% else %}Сделки с этим пользователем{% endif %}"></i>
+                    {% if not is_owner %}
                         <i class="far fa-comments" title="Написать отзыв"></i>
+                    {% else %}
                         <i class="fas fa-sign-out-alt link" title="Выйти"
                            data-link-href="/auth/logout"></i>
                         <i class="far fa-trash-alt" title="Удалить аккаунт"></i>
+                    {% endif %}
                     </div>
                 </div>
                 <div class="col-6 image">

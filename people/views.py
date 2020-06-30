@@ -18,7 +18,8 @@ class ProfileView(View):
 
         return render(request, "people/profile.html", {
             "user": request.user,
-            "owner": user
+            "owner": user,
+            "is_owner": request.user.id == user.id
         })
 
     @staticmethod
