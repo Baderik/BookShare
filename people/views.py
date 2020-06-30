@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
@@ -14,8 +14,11 @@ class IndexView(View):
 class ProfileView(View):
     @staticmethod
     def get(request, uid):
+        user = get_object_or_404(get_user_model(), id=uid)
+
         return render(request, "people/profile.html", {
-            "user": request.user
+            "user": request.user,
+            "owner": user
         })
 
     @staticmethod
