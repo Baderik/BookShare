@@ -23,4 +23,9 @@ $(function () {
         variableWidth: true,
         adaptiveHeight: true
     });
+
+    if ($("#id_cost").val() === "0") {
+        $("#id_cost").val("Бесплатно")
+        $(".currency").hide();
+    }
 })

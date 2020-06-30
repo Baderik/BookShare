@@ -1,4 +1,8 @@
 $(function () {
+    checkFree();
+    $("input#free").on("change", function (event) {
+        checkFree();
+    })
     $(".subject").slick({
         dots: false,
         infinite: false,
@@ -24,3 +28,18 @@ $(function () {
         adaptiveHeight: true
     });
 })
+
+function checkFree() {
+    let input = $("input#id_cost");
+    let rub = $('span.currency');
+
+    if ($("input#free").is(":checked")) {
+        input.val(0);
+        $(input).fadeOut();
+        $(rub).fadeOut();
+    }
+    else {
+        $(input).fadeIn();
+        $(rub).fadeIn();
+    }
+}
