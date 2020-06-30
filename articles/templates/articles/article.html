@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block Head %}
-    <link rel="stylesheet" href="{% static 'stylesheet/articles/css/article.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'stylesheet/articles/css/article.min.css' %}">
 {% endblock %}
 {% block Title %}Article{% endblock %}
 {% block Content %}
@@ -14,15 +15,22 @@
             </div>
             <div class="row">
                 <div class="menu offset-1 col-10">
-                    <i class="fas fa-pen link" title="Изменить запись" data-link-href="/articles/edit/"></i>
+                    {% if is_owner %}
+                        <i class="fas fa-pen link" title="Изменить запись" data-link-href="/articles/edit/"></i>
+                    {% endif %}
                     <i class="fas fa-hands-helping" title="Заключить сделку"></i>
-                    <i class="far fa-comments" title="Написать отзыв"></i>
-                    <i class="far fa-trash-alt" title="Удалить запись"></i>
+                    {% if not is_owner %}
+                        <i class="far fa-comments" title="Написать отзыв"></i>
+                    {% else %}
+                        <i class="far fa-trash-alt" title="Удалить запись"></i>
+                    {% endif %}
                 </div>
             </div>
             <label class="row title">
                 <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
-                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8">
+                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8"
+                value="{{ article.tittle }}"
+                readonly>
             </label>
             <div class="row subject offset-1 col-10">
                 <span class="tag">Русский язык</span>
@@ -58,28 +66,32 @@
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/book1.png' %}" alt="" class="my-image">
+                            <img src="{% static 'img/articles/book1.png' %}"
+                                 alt="" class="my-image">
                         </div>
                     </div>
                 </div>
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">
+                            <img src="{% static 'img/articles/book2.png' %}"
+                                 alt="" class="my-image">
                         </div>
                     </div>
                 </div>
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">
+                            <img src="{% static 'img/articles/book3.png' %}"
+                                 alt="" class="my-image">
                         </div>
                     </div>
                 </div>
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
+                            <img src="{% static 'img/articles/article.png' %}"
+                                 alt="" class="my-image">
                         </div>
                     </div>
                 </div>
@@ -96,18 +108,20 @@
         <div class="container">
             <div class="row">
                 <label class="col-12 offset-lg-1 col-lg-10">
-                    <textarea></textarea>
+                    <textarea readonly>{{ article.description }}</textarea>
                 </label>
             </div>
             <div class="row">
                 <div class="col-12 offset-lg-1 col-lg-5 cost">
-                    <label class="name" for="costid">Цена</label>
-                    <input type="text" id="costid">
+                    <label class="name" for="id_cost">Цена</label>
+                    <input type="text" id="id_cost"
+                           value="{{ article.price }}"
+                           readonly>
                     <span class="currency">руб.</span>
                 </div>
                 <label class="col-12 offset-lg-1 col-lg-5 condition">
                     <span class="name">Состояние</span>
-                    <input type="text">
+                    <input type="text" value="{{ article.condition }}" readonly>
                 </label>
             </div>
         </div>
@@ -172,11 +186,15 @@
                     <div class="row">
                         <div class="col-12 col-lg-6 name icon">
                             <i class="far fa-address-card"></i>
-                            <a href="">Фамилия Имя Отчество</a>
+                            <a href="">
+                                {{ article.author.profile.surname }}
+                                {{ article.author.profile.name }}
+                                {{ article.author.profile.middle_name }}
+                            </a>
                         </div>
                         <div class="col-12 col-lg-6 date icon">
                             <i class="far fa-clock"></i>
-                            <span>1 января 2020 16:00</span>
+                            <span>{{ article.date }}</span>
                         </div>
                     </div>
                 </div>

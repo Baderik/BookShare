@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+
+from articles.models import Article
 
 
 class IndexView(View):
@@ -19,10 +21,15 @@ class SearchView(View):
 
 class ArticleView(View):
     @staticmethod
-    def get(request):
+    def get(request, aid):
+        print(aid)
+        article = get_object_or_404(Article, id=aid)
+
         return render(request, "articles/article.html",
                       {
-                          "user": request.user
+                          "user": request.user,
+                          "article": article,
+                          "is_owner": request.user.id == article.author.id
                       })
 
 
