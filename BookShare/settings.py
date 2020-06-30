@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "authentication",
     "articles",
-    "people"
+    "people",
+    "index"
 ]
 
 MIDDLEWARE = [
