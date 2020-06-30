@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
-
+from django.contrib.auth import get_user_model
 from people.forms import SettingsForm
 
 
@@ -24,11 +24,16 @@ class ProfileView(View):
         form = SettingsForm(request.POST, instance=request.user.profile)
 
         if not form.is_valid():
-            return JsonResponse({"code": "400", "message": "Проверьте правильно ли вы заполнили поля"})
+            return JsonResponse({"code": "400",
+                                 "message": "Проверьте правильно ли вы заполнили поля"})
 
         message = []
 
         if request.user.email != form.cleaned_data["email"]:
+            if get_user_model().objects.get(email=form.cleaned_data["email"]):
+                return JsonResponse({"code": "400",
+                                     "message": "Эту почту уже кто-то использует"})
+
             request.user.email = form.cleaned_data["email"]
             request.user.is_active_email = False
             # Отправить письмо с подтверждением почты
