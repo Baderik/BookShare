@@ -1,6 +1,8 @@
 $(function(){
-   $("#id_phone").mask("+7 (000) 000-00-00");
-   $("form").on("submit", function(event) {
+    let emailBase = $(".email input").val();
+
+    $("#id_phone").mask("+7 (000) 000-00-00");
+    $("form").on("submit", function(event) {
         formRequest(event,
             function (response) {
                 let color = ""
@@ -17,6 +19,16 @@ $(function(){
             }
             )
     });
+    $(".email input").on("keyup", function (event) {
+        $(".email .accept").hide();
+        $(".email .times").hide();
+        $(".email .edit").hide();
+        if ($(".email input").val() != emailBase) $(".email .edit").show();
+        else {
+            if (emailAccept) $(".email .accept").show();
+            else $(".email .times").hide();
+        }
+   })
 });
 
 function setMessage(text, color) {

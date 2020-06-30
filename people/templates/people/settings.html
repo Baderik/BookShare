@@ -62,6 +62,9 @@
                                 style="display: none"
                             {% endif %}
                             ></i>
+                            <i class="far fa-stop-circle edit status"
+                                title="Изменён"
+                            ></i>
                             E-mail:
                             {{ form.email }}
                             <!--<input type="text" placeholder="Мой email">-->
@@ -115,6 +118,9 @@
     </main>
 {% endblock %}
 {% block Footer %}
+    <script>
+        let emailAccept = {% if email %}true{% else %}false{% endif %} ;
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{% static 'javascript/people/settings.js' %}"></script>
 {% endblock %}
