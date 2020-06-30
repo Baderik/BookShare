@@ -5,238 +5,237 @@
 {% endblock %}
 {% block Title %}Edit article{% endblock %}
 {% block Content %}
-    <main>
-        <div class="container">
-            <label class="row title">
-                <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
-                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8">
-            </label>
-            <div class="row subject offset-1 col-10">
-                <span class="tag"><i class="fas fa-times"></i>Русский язык</span>
-                <span class="tag"><i class="fas fa-times"></i>Английский язык</span>
-                <span class="tag"><i class="fas fa-times"></i>Математика</span>
-                <span class="tag"><i class="fas fa-times"></i>Химия</span>
-                <span class="tag"><i class="fas fa-times"></i>Биология</span>
-                <span class="tag"><i class="fas fa-plus"></i></span>
-            </div>
-            <div class="row classroom offset-1 col-10">
-                <span class="tag"><i class="fas fa-times"></i>1 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>2 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>3 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>4 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>5 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>6 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>7 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>8 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>9 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>10 класс</span>
-                <span class="tag"><i class="fas fa-times"></i>11 класс</span>
-                <span class="tag"><i class="fas fa-plus"></i></span>
-            </div>
-        </div>
-    </main>
-    <section class="images">
-        <div class="nav">
-            <hr>
-            <div class="container nav-block">
-                <span>Изображение</span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row offset-1 col-10 images-slick">
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book1.png' %}." alt="" class="my-image">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="desc">
-        <div class="nav">
-            <hr>
-            <div class="container nav-block">
-                <span>Описание</span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <label class="col-12 offset-lg-1 col-lg-10">
-                    <textarea></textarea>
-                </label>
-            </div>
-            <div class="row">
-                <div class="col-12 offset-lg-1 col-lg-5 cost">
-                    <label class="name" for="id_cost">Цена</label>
-                    <div class="choose-cost">
-                        <span class="choose money">Платно</span>
-                        <span class="my-toggle">
-                          <input type="checkbox" id="free" class="toggle"/>
-                          <label for="free" class="toggle"><span></span></label>
-                        </span>
-                        <span class="choose free">Бесплатно</span>
-                    </div>
-                    <input type="number" id="id_cost">
-                    <span class="currency">руб.</span>
-                </div>
-                <label class="col-12 offset-lg-1 col-lg-5 condition">
-                    <span class="name">Состояние</span>
-                    {{ form.condition }}
-                </label>
-            </div>
-        </div>
-    </section>
-    <section class="author">
-        <div class="nav">
-            <hr>
-            <div class="container nav-block">
-                <span>Автор</span>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="offset-1 col-10 base">
-                    <div class="row no-gutters">
-                        <div class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Телефон
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="phone" class="toggle"
-                                     data-disabled-title="Вы не указали номер телефона"
-                              {% if not user.profile.phone %}disabled{% endif %}
-                              />
-                              <label for="phone" class="toggle"><span></span></label>
-                            </span>
-                        </div>
-                        <div class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                E-mail
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="email" class="toggle"/>
-                              <label for="email" class="toggle"><span></span></label>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="accounts offset-1 col-10">
-                    <div class="row no-gutters">
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Вконтакте
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="vk" class="toggle"/>
-                              <label for="vk" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Facebook
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="facebook" class="toggle"/>
-                              <label for="facebook" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Twitter
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="twitter" class="toggle"/>
-                              <label for="twitter" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                        <span class="col-8 col-lg-3 toggle-block">
-                            <span>
-                                Одноклассники
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="odnoklassniki" class="toggle"/>
-                              <label for="odnoklassniki" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="messenger offset-1 col-10">
-                    <div class="row no-gutters">
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Telegram
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="telegram" class="toggle"
-                              data-disabled-title="Вы не указали номер телефона"
-                              />
-                              <label for="telegram" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                WhatsApp
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="whatsapp" class="toggle"
-                              data-disabled-title="Вы не указали номер телефона"
-                              />
-                              <label for="whatsapp" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                        <span class="col-6 col-lg-3 toggle-block">
-                            <span>
-                                Viber
-                            </span>
-                            <span class="my-toggle">
-                              <input type="checkbox" id="viber" class="toggle"
-                              data-disabled-title="Вы не указали номер телефона"
-                              />
-                              <label for="viber" class="toggle"><span></span></label>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="button-out">
-        <button class="my-button">Сохранить</button>
-    </div>
-    <form action="../" method="POST" class="article-form">
+    <form action="">
         {% csrf_token %}
-        {{ form }}
+        <main>
+            <div class="container">
+                <label class="row title">
+                    <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
+                    {{ form.tittle }}
+                </label>
+                <div class="row subject offset-1 col-10">
+                    <span class="tag"><i class="fas fa-times"></i>Русский язык</span>
+                    <span class="tag"><i class="fas fa-times"></i>Английский язык</span>
+                    <span class="tag"><i class="fas fa-times"></i>Математика</span>
+                    <span class="tag"><i class="fas fa-times"></i>Химия</span>
+                    <span class="tag"><i class="fas fa-times"></i>Биология</span>
+                    <span class="tag"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="row classroom offset-1 col-10">
+                    <span class="tag"><i class="fas fa-times"></i>1 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>2 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>3 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>4 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>5 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>6 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>7 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>8 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>9 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>10 класс</span>
+                    <span class="tag"><i class="fas fa-times"></i>11 класс</span>
+                    <span class="tag"><i class="fas fa-plus"></i></span>
+                </div>
+            </div>
+        </main>
+        <section class="images">
+            <div class="nav">
+                <hr>
+                <div class="container nav-block">
+                    <span>Изображение</span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row offset-1 col-10 images-slick">
+                    <div class="image-wrap">
+                        <div class="image">
+                            <div class="image-block">
+                                <img src="{% static 'img/articles/book1.png' %}." alt="" class="my-image">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-wrap">
+                        <div class="image">
+                            <div class="image-block">
+                                <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-wrap">
+                        <div class="image">
+                            <div class="image-block">
+                                <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-wrap">
+                        <div class="image">
+                            <div class="image-block">
+                                <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="desc">
+            <div class="nav">
+                <hr>
+                <div class="container nav-block">
+                    <span>Описание</span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <label class="col-12 offset-lg-1 col-lg-10">
+                        {{ form.description }}
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-12 offset-lg-1 col-lg-5 cost">
+                        <label class="name" for="id_price">Цена</label>
+                        <div class="choose-cost">
+                            <span class="choose money">Платно</span>
+                            <span class="my-toggle">
+                              <input type="checkbox" id="free" class="toggle"/>
+                              <label for="free" class="toggle"><span></span></label>
+                            </span>
+                            <span class="choose free">Бесплатно</span>
+                        </div>
+                        {{ form.price }}
+                        <span class="currency">руб.</span>
+                    </div>
+                    <label class="col-12 offset-lg-1 col-lg-5 condition">
+                        <span class="name">Состояние</span>
+                        {{ form.condition }}
+                    </label>
+                </div>
+            </div>
+        </section>
+        <section class="author">
+            <div class="nav">
+                <hr>
+                <div class="container nav-block">
+                    <span>Автор</span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="offset-1 col-10 base">
+                        <div class="row no-gutters">
+                            <div class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Телефон
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="phone" class="toggle"
+                                         data-disabled-title="Вы не указали номер телефона"
+                                  {% if not user.profile.phone %}disabled{% endif %}
+                                  />
+                                  <label for="phone" class="toggle"><span></span></label>
+                                </span>
+                            </div>
+                            <div class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    E-mail
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="email" class="toggle"/>
+                                  <label for="email" class="toggle"><span></span></label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="accounts offset-1 col-10">
+                        <div class="row no-gutters">
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Вконтакте
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="vk" class="toggle"/>
+                                  <label for="vk" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Facebook
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="facebook" class="toggle"/>
+                                  <label for="facebook" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Twitter
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="twitter" class="toggle"/>
+                                  <label for="twitter" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                            <span class="col-8 col-lg-3 toggle-block">
+                                <span>
+                                    Одноклассники
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="odnoklassniki" class="toggle"/>
+                                  <label for="odnoklassniki" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="messenger offset-1 col-10">
+                        <div class="row no-gutters">
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Telegram
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="telegram" class="toggle"
+                                  data-disabled-title="Вы не указали номер телефона"
+                                  />
+                                  <label for="telegram" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    WhatsApp
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="whatsapp" class="toggle"
+                                  data-disabled-title="Вы не указали номер телефона"
+                                  />
+                                  <label for="whatsapp" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                            <span class="col-6 col-lg-3 toggle-block">
+                                <span>
+                                    Viber
+                                </span>
+                                <span class="my-toggle">
+                                  <input type="checkbox" id="viber" class="toggle"
+                                  data-disabled-title="Вы не указали номер телефона"
+                                  />
+                                  <label for="viber" class="toggle"><span></span></label>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="button-out">
+            <button class="my-button">Сохранить</button>
+        </div>
     </form>
 {% endblock %}
 {% block Footer %}

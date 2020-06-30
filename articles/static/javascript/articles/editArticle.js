@@ -9,7 +9,6 @@ $(function () {
     $("input.toggle.phone").on("change", function (event) {
         check_messengers();
     })
-    $("select:first").attr("id", "condition");
     $("input#free").on("change", function (event) {
         checkFree();
     })
@@ -40,7 +39,7 @@ $(function () {
 })
 
 function checkFree() {
-    let input = $("input#id_cost");
+    let input = $("input#id_price");
     let rub = $('span.currency');
 
     if ($("input#free").is(":checked")) {
