@@ -6,7 +6,7 @@ from articles.models import Article
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        exclude = ('author', 'status', 'date')
+        exclude = ('author', 'seen', 'date')
         widgets = {
             'tittle': forms.TextInput(attrs={
                 "placeholder": "Новый заголовок",
@@ -17,7 +17,7 @@ class ArticleForm(forms.ModelForm):
                                                  "cols": ""}),
             'images': forms.HiddenInput(),
             'tags': forms.HiddenInput(),
-            'avatar': forms.HiddenInput(),
+            'avatar': forms.HiddenInput(attrs={"value": 0}),
             'phone': forms.CheckboxInput(attrs={
                 "class": "toggle",
                 "data-disabled-title": "Вы не указали номер телефона"
