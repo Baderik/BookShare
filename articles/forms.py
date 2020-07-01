@@ -17,5 +17,38 @@ class ArticleForm(forms.ModelForm):
                                                  "cols": ""}),
             'images': forms.HiddenInput(),
             'tags': forms.HiddenInput(),
-            'avatar': forms.HiddenInput()
+            'avatar': forms.HiddenInput(),
+            'phone': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не указали номер телефона"
+                }),
+            'email': forms.CheckboxInput(attrs={"class": "toggle"}),
+            'vk': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не привязали аккаунт ВКонтакте"
+                }),
+            'facebook': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не привязали аккаунт Facebook"
+                }),
+            'twitter': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не привязали аккаунт Twitter"
+                }),
+            'odnoklassniki': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не привязали аккаунт Одноклассники"
+                }),
+            'telegram': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не указали номер телефона"
+                }),
+            'whatsapp': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не указали номер телефона"
+                }),
+            'viber': forms.CheckboxInput(attrs={
+                "class": "toggle",
+                "data-disabled-title": "Вы не указали номер телефона"
+                }),
         }

@@ -131,11 +131,8 @@
                                     Телефон
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="phone" class="toggle"
-                                         data-disabled-title="Вы не указали номер телефона"
-                                  {% if not user.profile.phone %}disabled{% endif %}
-                                  />
-                                  <label for="phone" class="toggle"><span></span></label>
+                                    {{ form.phone }}
+                                  <label for="id_phone" class="toggle"><span></span></label>
                                 </span>
                             </div>
                             <div class="col-6 col-lg-3 toggle-block">
@@ -143,8 +140,8 @@
                                     E-mail
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="email" class="toggle"/>
-                                  <label for="email" class="toggle"><span></span></label>
+                                    {{ form.email }}
+                                  <label for="id_email" class="toggle"><span></span></label>
                                 </span>
                             </div>
                         </div>
@@ -158,8 +155,8 @@
                                     Вконтакте
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="vk" class="toggle"/>
-                                  <label for="vk" class="toggle"><span></span></label>
+                                    {{ form.vk }}
+                                  <label for="id_vk" class="toggle"><span></span></label>
                                 </span>
                             </span>
                             <span class="col-6 col-lg-3 toggle-block">
@@ -167,8 +164,8 @@
                                     Facebook
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="facebook" class="toggle"/>
-                                  <label for="facebook" class="toggle"><span></span></label>
+                                    {{ form.facebook }}
+                                  <label for="id_facebook" class="toggle"><span></span></label>
                                 </span>
                             </span>
                             <span class="col-6 col-lg-3 toggle-block">
@@ -176,8 +173,8 @@
                                     Twitter
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="twitter" class="toggle"/>
-                                  <label for="twitter" class="toggle"><span></span></label>
+                                    {{ form.twitter }}
+                                  <label for="id_twitter" class="toggle"><span></span></label>
                                 </span>
                             </span>
                             <span class="col-8 col-lg-3 toggle-block">
@@ -185,8 +182,8 @@
                                     Одноклассники
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="odnoklassniki" class="toggle"/>
-                                  <label for="odnoklassniki" class="toggle"><span></span></label>
+                                    {{ form.odnoklassniki }}
+                                  <label for="id_odnoklassniki" class="toggle"><span></span></label>
                                 </span>
                             </span>
                         </div>
@@ -200,10 +197,8 @@
                                     Telegram
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="telegram" class="toggle"
-                                  data-disabled-title="Вы не указали номер телефона"
-                                  />
-                                  <label for="telegram" class="toggle"><span></span></label>
+                                    {{ form.telegram }}
+                                  <label for="id_telegram" class="toggle"><span></span></label>
                                 </span>
                             </span>
                             <span class="col-6 col-lg-3 toggle-block">
@@ -211,10 +206,8 @@
                                     WhatsApp
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="whatsapp" class="toggle"
-                                  data-disabled-title="Вы не указали номер телефона"
-                                  />
-                                  <label for="whatsapp" class="toggle"><span></span></label>
+                                    {{ form.whatsapp }}
+                                  <label for="id_whatsapp" class="toggle"><span></span></label>
                                 </span>
                             </span>
                             <span class="col-6 col-lg-3 toggle-block">
@@ -222,10 +215,8 @@
                                     Viber
                                 </span>
                                 <span class="my-toggle">
-                                  <input type="checkbox" id="viber" class="toggle"
-                                  data-disabled-title="Вы не указали номер телефона"
-                                  />
-                                  <label for="viber" class="toggle"><span></span></label>
+                                    {{ form.viber }}
+                                  <label for="id_viber" class="toggle"><span></span></label>
                                 </span>
                             </span>
                         </div>
@@ -239,5 +230,12 @@
     </form>
 {% endblock %}
 {% block Footer %}
+    <script>
+        let phone = {% if user.profile.phone %}true{% else %}false{% endif %};
+        let vk = false;
+        let facebook = false;
+        let twitter = false;
+        let odnoklassniki = false;
+    </script>
     <script src="{% static 'javascript/articles/editArticle.js' %}"></script>
 {% endblock %}

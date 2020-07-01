@@ -1,12 +1,13 @@
 $(function () {
     // Functions
+    turn_off();
     checkFree();
     $.each($("input.toggle"), function (index, value) {
         processing_toggle($(value));
     })
     check_messengers();
     // Handlers
-    $("input.toggle.phone").on("change", function (event) {
+    $("input.toggle#id_phone").on("change", function (event) {
         check_messengers();
     })
     $("input#free").on("change", function (event) {
@@ -70,11 +71,11 @@ function processing_toggle(toggle) {
 }
 
 function check_messengers() {
-    let telegram = $("input.toggle#telegram");
-    let whatsApp = $("input.toggle#whatsapp");
-    let viber = $("input.toggle#viber");
+    let telegram = $("input.toggle#id_telegram");
+    let whatsApp = $("input.toggle#id_whatsapp");
+    let viber = $("input.toggle#id_viber");
 
-    if ($("input.toggle.phone").is(":checked")) {
+    if ($("input.toggle#id_phone").is(":checked")) {
         console.log("true");
         if (telegram.prop("disabled"))
             telegram.prop("disabled", false);
@@ -91,4 +92,20 @@ function check_messengers() {
     processing_toggle(telegram);
     processing_toggle(whatsApp);
     processing_toggle(viber);
+}
+
+function turn_off() {
+    let elements = [
+        ["#id_phone", phone],
+        ["#id_vk", vk],
+        ["#id_facebook", facebook],
+        ["#id_twitter", twitter],
+        ["#id_odnoklassniki", odnoklassniki],
+    ];
+
+    $.each(elements, function (index, value) {
+        console.log(value);
+        if (value[1]) $(value[0]).prop("disabled", false);
+        else $(value[0]).prop("disabled", true);
+    })
 }
