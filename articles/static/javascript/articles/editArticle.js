@@ -37,6 +37,25 @@ $(function () {
         variableWidth: true,
         adaptiveHeight: true
     });
+    $("form").on("submit", function(event) {
+        $("input.toggle").prop("disabled", false);
+        $("input.toggle#free").prop("disabled", true);
+        formRequest(event,
+            function (response) {
+                let color = ""
+                if (response.code !== "303" && response.code !== "200") {
+                    color = "red";
+                }
+                setMessage(response.message, color)
+                if (response.code === "303") {
+                    location.href = response.location;
+                }
+            },
+            function (response) {
+                setMessage("Произошла ошибка", "red")
+            }
+            )
+    });
 })
 
 function checkFree() {
@@ -76,7 +95,6 @@ function check_messengers() {
     let viber = $("input.toggle#id_viber");
 
     if ($("input.toggle#id_phone").is(":checked")) {
-        console.log("true");
         if (telegram.prop("disabled"))
             telegram.prop("disabled", false);
         if (whatsApp.prop("disabled"))
@@ -104,8 +122,18 @@ function turn_off() {
     ];
 
     $.each(elements, function (index, value) {
-        console.log(value);
         if (value[1]) $(value[0]).prop("disabled", false);
         else $(value[0]).prop("disabled", true);
     })
+}
+
+function setMessage(text, color) {
+    let message = $(".message span");
+    message.text(text);
+    if (color) {
+        message.css("text-shadow", `0 0 0.2rem ${color}`);
+    }
+    let top = $('header').offset().top;
+    $(".message").fadeIn();
+    $('html').animate({ "scrollTop": top }, "1100");
 }

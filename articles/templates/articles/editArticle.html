@@ -5,10 +5,17 @@
 {% endblock %}
 {% block Title %}Edit article{% endblock %}
 {% block Content %}
-    <form action="">
+    <form action="../" method="POST">
         {% csrf_token %}
         <main>
             <div class="container">
+                <div class="row">
+                    <div class="message col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                        <span>
+                            Проверьте правильно ли заполнены поля
+                        </span>
+                    </div>
+                </div>
                 <label class="row title">
                     <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
                     {{ form.tittle }}
@@ -227,6 +234,8 @@
         <div class="button-out">
             <button class="my-button">Сохранить</button>
         </div>
+    {{ form.images }}
+    {{ form.tags }}
     </form>
 {% endblock %}
 {% block Footer %}
