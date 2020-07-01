@@ -40,6 +40,21 @@ $(function () {
     $("form").on("submit", function(event) {
         $("input.toggle").prop("disabled", false);
         $("input.toggle#free").prop("disabled", true);
+
+        let author = false;
+
+        $.each($("input.toggle:not([id=free])"), function (index, value) {
+            if ($(value).is(":checked")) {
+                author = true;
+                return false;
+            }
+        })
+
+        if (!author) {
+            event.preventDefault();
+            setMessage("Выберите хотя бы один сз способ связи с вами", "red");
+            return;
+        }
         formRequest(event,
             function (response) {
                 let color = ""
