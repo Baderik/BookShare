@@ -8,7 +8,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tittle = models.CharField(max_length=255)
     description = models.TextField()
-    status = models.PositiveIntegerField()
+    seen = models.PositiveIntegerField(default=0)
     condition = models.CharField(
         max_length=255,
         choices=(
