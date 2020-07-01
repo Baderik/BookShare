@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
+
+from re import match
+
 from people.forms import SettingsForm
 
 
@@ -29,7 +32,7 @@ class ProfileView(View):
 
         form = SettingsForm(request.POST, instance=request.user.profile)
 
-        if not form.is_valid():
+        if not form.is_valid() or not check_phone(form.cleaned_data["phone"]):
             return JsonResponse({"code": "400",
                                  "message": "Проверьте правильно ли вы заполнили поля"})
 
@@ -85,3 +88,9 @@ class SettingsView(View):
                           })
 
         return redirect("/")
+
+
+def check_phone(phone):
+    template_phone = "\+7 \(\d{3}\) \d{3}(-\d{2}){2}"
+
+    return len(phone) == 18 and match(template_phone, phone)
