@@ -23,8 +23,6 @@ class IndexView(View):
                 {"code": "400",
                  "message": "Проверьте правильно ли заполнены поля"})
 
-        print(form.cleaned_data["phone"])
-
         new_post = form.save(commit=False)
         new_post.author = request.user
         new_post.save()
@@ -83,6 +81,8 @@ def processing_messengers(form):
             if form.cleaned_data[messenger]:
                 return False
 
+    return True
+
 
 def processing_social(form, user):
     if form.cleaned_data["phone"] and not user.profile.phone:
@@ -104,10 +104,14 @@ def processing_social(form, user):
 
 
 def processing_checkbox(form, user):
+    print("social")
     if not processing_social(form, user):
         return False
+    print("messengers")
     if not processing_messengers(form):
         return False
+
+    print("data")
 
     return (form.cleaned_data["phone"] or
             form.cleaned_data["email"] or

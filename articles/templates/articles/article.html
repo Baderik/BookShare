@@ -137,48 +137,70 @@
             <div class="row">
                 <div class="offset-1 col-10">
                     <div class="row base">
-                        <div class="col-6 col-lg-3 phone icon">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Телефон</span>
-                        </div>
-                        <div class="col-6 col-lg-3 email icon">
-                            <i class="fas fa-at"></i>
-                            <span>E-mail</span>
-                        </div>
+                        {% if article.phone %}
+                            <div class="col-6 phone icon">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>{{ article.author.profile.phone }}</span>
+                            </div>
+                        {% endif %}
+                        {% if article.email  %}
+                            <div class="col-6 email icon">
+                                <i class="fas fa-at"></i>
+                                <span>{{ article.author.email }}</span>
+                            </div>
+                        {% endif %}
                     </div>
+                {% if article.vk or article.facebook or article.twitter or article.odnoklassniki %}
                     <span class="blur">Найдите меня в ...</span>
+                {% endif %}
                     <div class="row">
+                    {% if article.vk %}
                         <div class="col-6 col-lg-3 vk icon">
                             <i class="fab fa-vk"></i>
                             <a>Вконтакте</a>
                         </div>
+                    {% endif %}
+                    {% if article.facebook %}
                         <div class="col-6 col-lg-3 facebook icon">
                             <i class="fa fa-facebook"></i>
                             <a>Facebook</a>
                         </div>
+                    {% endif %}
+                    {% if article.twitter %}
                         <div class="col-6 col-lg-3 twitter icon">
                             <i class="fab fa-twitter"></i>
                             <a>Twitter</a>
                         </div>
+                    {% endif %}
+                    {% if article.odnoklassniki %}
                         <div class="col-7 col-lg-3 odnoklassniki icon">
                             <i class="fab fa-odnoklassniki"></i>
                             <a>Одноклассники</a>
                         </div>
+                    {% endif %}
                     </div>
+                {% if article.telegram or article.whatsapp or article.viber %}
                     <span class="blur">Или пишите в ...</span>
+                {% endif %}
                     <div class="row">
+                    {% if article.telegram %}
                         <div class="col-6 col-lg-3 telegram icon">
                             <i class="fab fa-telegram-plane"></i>
                             <span>Telegram</span>
                         </div>
+                    {% endif %}
+                    {% if article.whatsapp %}
                         <div class="col-6 col-lg-3 whatsapp icon">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp</span>
                         </div>
+                    {% endif %}
+                    {% if article.viber %}
                         <div class="col-6 col-lg-3 viber icon">
                             <i class="fab fa-viber"></i>
                             <span>Viber</span>
                         </div>
+                    {% endif %}
                     </div>
                     <span class="blur">
                         Самое главное
