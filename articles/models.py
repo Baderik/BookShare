@@ -15,8 +15,8 @@ class Article(models.Model):
             ("old", "Б/у"),
             ("new", "Новый")), default="old")
     price = models.PositiveIntegerField()
-    tags = models.CharField(max_length=255)
-    images = models.CharField(max_length=255)
+    tags = models.CharField(max_length=255, blank=True)
+    images = models.CharField(max_length=255, blank=True)
     avatar = models.PositiveIntegerField()
     date = models.DateTimeField(default=timezone.now)
     phone = models.BooleanField(default=False)
