@@ -54,6 +54,20 @@ function formRequest(event, success=function (response) {},
         error: error
     })
 }
+function imageRequest(event, success=function (response) {},
+                     error=function (response) {}) {
+    event.preventDefault();
+    $.ajax({
+        url: $(event.currentTarget).attr("action"),
+        method: $(event.currentTarget).attr("method"),
+        data: new FormData($(event.currentTarget).get(0)),
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        success: success,
+        error: error
+    })
+}
 // Copy
 function copyText(el, format=false) {
     if (format){
