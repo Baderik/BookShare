@@ -32,16 +32,20 @@ class ProfileView(View):
 
         form = SettingsForm(request.POST, instance=request.user.profile)
 
-        if not form.is_valid() or not check_phone(form.cleaned_data["phone"]):
-            return JsonResponse({"code": "400",
-                                 "message": "Проверьте правильно ли вы заполнили поля"})
+        if not form.is_valid() or \
+                not check_phone(form.cleaned_data["phone"]):
+            return JsonResponse({
+                "code": "400",
+                "message": "Проверьте правильно ли вы заполнили поля"})
 
         message = []
 
         if request.user.email != form.cleaned_data["email"]:
-            if get_user_model().objects.filter(email=form.cleaned_data["email"]):
-                return JsonResponse({"code": "400",
-                                     "message": "Эту почту уже кто-то использует"})
+            if get_user_model().objects.filter(
+                    email=form.cleaned_data["email"]):
+                return JsonResponse({
+                    "code": "400",
+                    "message": "Эту почту уже кто-то использует"})
 
             request.user.email = form.cleaned_data["email"]
             request.user.is_active_email = False
@@ -49,7 +53,8 @@ class ProfileView(View):
             message.append("Ваша почта изменён")
 
         if form.cleaned_data["password"]:
-            if form.cleaned_data["password"] == form.cleaned_data["password_again"]:
+            if form.cleaned_data["password"] \
+                    == form.cleaned_data["password_again"]:
                 message.append("Ваш пароль изменён")
 
             else:
@@ -76,7 +81,8 @@ class SettingsView(View):
                               initial={
                                   "surname": request.user.profile.surname,
                                   "name": request.user.profile.name,
-                                  "middle_name": request.user.profile.middle_name,
+                                  "middle_name":
+                                      request.user.profile.middle_name,
                                   "about": request.user.profile.about,
                                   "email": request.user.email,
                                   "phone": request.user.profile.phone,
