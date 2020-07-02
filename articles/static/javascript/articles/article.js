@@ -28,4 +28,14 @@ $(function () {
         $("#id_cost").val("Бесплатно")
         $(".currency").hide();
     }
+
+    $(".messenger").on("click", function (event) {
+        addNotification("По номеру телефона, пожалуйста");
+    })
+    $(".fa-comments").on("click", function (event) {
+        addNotification("Это ещё не работает. А это значит, что скоро будет");
+    })
+    $(".fa-hands-helping").on("click", function (event) {
+        addNotification("Это ещё не работает. А это значит, что скоро будет");
+    })
 })

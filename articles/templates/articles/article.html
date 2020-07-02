@@ -28,7 +28,7 @@
             </div>
             <label class="row title">
                 <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
-                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8"
+                <input type="text" class="offset-1 col-10 offset-lg-0 col-lg-8"
                 value="{{ article.tittle }}"
                 readonly>
             </label>
@@ -138,13 +138,16 @@
                 <div class="offset-1 col-10">
                     <div class="row base">
                         {% if article.phone %}
-                            <div class="col-6 phone icon">
+                            <div class="col-12 col-lg-6 phone icon copy"
+                                 data-copy-el=".phone span">
                                 <i class="fas fa-phone-alt"></i>
                                 <span>{{ article.author.profile.phone }}</span>
                             </div>
                         {% endif %}
                         {% if article.email  %}
-                            <div class="col-6 email icon">
+                            <div class="col-12 col-lg-6 email icon copy"
+                                 data-copy-el= copy"
+                                 data-copy-el=".phone span".email span">
                                 <i class="fas fa-at"></i>
                                 <span>{{ article.author.email }}</span>
                             </div>
@@ -184,19 +187,22 @@
                 {% endif %}
                     <div class="row">
                     {% if article.telegram %}
-                        <div class="col-6 col-lg-3 telegram icon">
+                        <div class="col-6 col-lg-3 telegram icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-telegram-plane"></i>
                             <span>Telegram</span>
                         </div>
                     {% endif %}
                     {% if article.whatsapp %}
-                        <div class="col-6 col-lg-3 whatsapp icon">
+                        <div class="col-6 col-lg-3 whatsapp icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp</span>
                         </div>
                     {% endif %}
                     {% if article.viber %}
-                        <div class="col-6 col-lg-3 viber icon">
+                        <div class="col-6 col-lg-3 viber icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-viber"></i>
                             <span>Viber</span>
                         </div>
