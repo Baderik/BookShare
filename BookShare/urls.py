@@ -6,5 +6,6 @@ urlpatterns = [
     path('auth/', include("authentication.urls")),
     path('articles/', include("articles.urls")),
     path('user/', include("people.urls")),
-    path('', include("index.urls"))
+    path('', include("index.urls")),
+    path('image/', include("imageBase.urls"))
 ]
