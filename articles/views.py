@@ -44,7 +44,6 @@ class SearchView(View):
 class ArticleView(View):
     @staticmethod
     def get(request, aid):
-        print(aid)
         article = get_object_or_404(Article, id=aid)
 
         return render(request, "articles/article.html",
@@ -53,6 +52,30 @@ class ArticleView(View):
                           "article": article,
                           "is_owner": request.user.id == article.author.id
                       })
+
+    @staticmethod
+    def post(request, aid):
+        article = get_object_or_404(Article, id=aid)
+
+        if not request.user.is_authenticated or\
+                not request.user.is_active or \
+                request.user.id != article.author.id:
+            return JsonResponse({"code": "403", "message": "Вам туда нельзя"})
+
+        form = ArticleForm(request.POST, instance=article)
+
+        if not form.is_valid() or \
+                not processing_checkbox(form, request.user):
+            return JsonResponse(
+                {"code": "400",
+                 "message": "Проверьте правильно ли заполнены поля"})
+
+        new_post = form.save(commit=False)
+        new_post.save()
+
+        return JsonResponse({"code": "303",
+                             "message": "Вам туда",
+                             "location": f"../../{new_post.id}/"})
 
 
 class AddView(View):
@@ -68,9 +91,18 @@ class AddView(View):
 class EditView(View):
     @staticmethod
     def get(request, aid):
+        article = get_object_or_404(Article, id=aid)
+
+        if not request.user.is_authenticated or\
+                not request.user.is_active \
+                or request.user.pk != article.author.pk:
+            return redirect('/')
+
         return render(request, "articles/editArticle.html",
                       {
-                          "user": request.user
+                          "user": request.user,
+                          "form": ArticleForm(instance=article),
+                          "id": article.id
                       })
 
 

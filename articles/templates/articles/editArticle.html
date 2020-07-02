@@ -5,7 +5,11 @@
 {% endblock %}
 {% block Title %}Edit article{% endblock %}
 {% block Content %}
+{% if id %}
+    <form action="../../{{ id }}/" method="POST">
+{% else %}
     <form action="../" method="POST">
+{% endif %}
         {% csrf_token %}
         <main>
             <div class="container">

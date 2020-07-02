@@ -16,9 +16,11 @@
             <div class="row">
                 <div class="menu offset-1 col-10">
                     {% if is_owner %}
-                        <i class="fas fa-pen link" title="Изменить запись" data-link-href="/articles/edit/"></i>
+                        <i class="fas fa-pen link" title="Изменить запись"
+                           data-link-href="/articles/edit/{{ article.id }}"></i>
                     {% endif %}
-                    <i class="fas fa-hands-helping" title="Заключить сделку"></i>
+                    <i class="fas fa-hands-helping"
+                       title="Заключить сделку"></i>
                     {% if not is_owner %}
                         <i class="far fa-comments" title="Написать отзыв"></i>
                     {% else %}
@@ -27,7 +29,8 @@
                 </div>
             </div>
             <label class="row title">
-                <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
+                <span class="offset-1 col-10 offset-lg-1 col-lg-2">
+                    Заголовок:</span>
                 <input type="text" class="offset-1 col-10 offset-lg-0 col-lg-8"
                 value="{{ article.tittle }}"
                 readonly>
@@ -121,7 +124,8 @@
                 </div>
                 <label class="col-12 offset-lg-1 col-lg-5 condition">
                     <span class="name">Состояние</span>
-                    <input type="text" value="{{ article.condition }}" readonly>
+                    <input type="text" value="{{ article.condition }}"
+                           readonly>
                 </label>
             </div>
         </div>
