@@ -1,6 +1,12 @@
 $(function () {
     $(".list-btn").click(listPressed);
     $(".link").click(link);
+    // Copy text
+    $(".copy").on("click", function (event) {
+        event.preventDefault();
+        copyText($(this).data("copy-el"), $(this).data("format"));
+        addNotification("Скопированно в буфер обмена");
+    });
 })
 function listPressed(event) {
     if ($(this).hasClass("active")) {
@@ -44,4 +50,24 @@ function formRequest(event, success=function (response) {}, error=function (resp
         success: success,
         error: error
     })
+}
+// Copy
+function copyText(el, format=false) {
+    if (format){
+        let $temp = $("<div>");
+        $("body").prepend($temp);
+        $temp.attr("contenteditable", true)
+           .html($(el).html()).select()
+           .on("focus", function() { document.execCommand('selectAll',false,null); })
+           .focus();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+    else {
+        let $tmp = $("<textarea>");
+        $("body").append($tmp);
+        $tmp.val($(el).text()).select();
+        document.execCommand("copy");
+        $tmp.remove();
+    }
 }
