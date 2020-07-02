@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "authentication",
     "articles",
     "people",
-    "index"
+    "index",
+    "imageBase"
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Media files (img)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
 
 # Auth
 AUTH_USER_MODEL = "authentication.User"
