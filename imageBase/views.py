@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, redirect, get_object_or_404, render
+from django.shortcuts import redirect, get_object_or_404, render
 from django.views import View
 from django.http import JsonResponse
 
