@@ -3,7 +3,8 @@ from authentication.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
-# Create your models here.
+
+from imageBase.models import ImageModel
 
 
 class Profile(models.Model):
@@ -13,7 +14,7 @@ class Profile(models.Model):
     middle_name = models.CharField(max_length=64)
     about = models.TextField(default="")
     phone = models.CharField(max_length=18, null=True, default=None)
-    image = models.IntegerField(default=0)
+    image = models.ForeignKey(ImageModel, on_delete=models.PROTECT, null=True, blank=True)
 
 
 @receiver(post_save, sender=User)
