@@ -5,29 +5,31 @@ from django.http import JsonResponse
 from imageBase.models import ImageModel
 from imageBase.forms import UploadImageForm
 
-from PIL import Image
-
-import os
-
 
 class UploadView(View):
     @staticmethod
     def get(request):
-        return render(request, "imageBase/index.html", {"form": UploadImageForm()})
+        return render(request, "imageBase/index.html",
+                      {"form": UploadImageForm()})
 
     @staticmethod
     def post(request):
         if not request.user.is_authenticated:
-            return redirect("/")
+            return JsonResponse({"code": "403",
+                                 "message": "Вам не сюда"})
 
         form = UploadImageForm(request.POST, request.FILES)
 
         if not form.is_valid():
-            return HttpResponse(status=400)
+            return JsonResponse({
+                "code": "400",
+                "message": "Проверьте правильно ли вы заполнили поля"})
 
         image = form.save()
 
-        return JsonResponse({"id": image.id})
+        return JsonResponse({"code": "200",
+                             "message": "Congratualtions",
+                             "id": image.id})
 
 
 class GetView(View):
