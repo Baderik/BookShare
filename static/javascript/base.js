@@ -1,4 +1,6 @@
 $(function () {
+    setWidthHeightImg();
+    // Handlers
     $(".list-btn").click(listPressed);
     $(".link").click(link);
     // Copy text
@@ -40,7 +42,8 @@ function link(event) {
     window.location.href = $(this).data("link-href");
 }
 // FormSendler
-function formRequest(event, success=function (response) {}, error=function (response) {}) {
+function formRequest(event, success=function (response) {},
+                     error=function (response) {}) {
     event.preventDefault();
     $.ajax({
         url: $(event.currentTarget).attr("action"),
@@ -70,4 +73,45 @@ function copyText(el, format=false) {
         document.execCommand("copy");
         $tmp.remove();
     }
+}
+// Width and height img
+function calcMaxSize(max, parentValue) {
+    console.log(max);
+    if (max.slice(-1) === "%") {
+        max = parseInt(max);
+        return  parseInt(parentValue) * max / 100;
+    }
+    return parseInt(max);
+}
+
+function setWidthHeightImg(image=".image-wh") {
+    let images = $(image);
+    $.each(images, function (index, value) {
+        let parent = $(value).parent();
+
+        $(value).removeAttr("width")
+            .removeAttr("height")
+            .css({ width: "", height: "" });
+
+        let width  = parseInt($(value).width());
+        let height = parseInt($(value).height());
+        let maxWidth = calcMaxSize(
+            $(value).data("image-wh-width"), parent.width());
+        let maxHeight = calcMaxSize(
+            $(value).data("image-wh-height"), parent.height());
+
+        let proportion = width / height;
+
+        if (proportion < maxWidth / maxHeight) {
+            height = maxHeight;
+            width = proportion * height;
+        }
+        else {
+            width = maxWidth;
+            height = width / proportion;
+        }
+
+        $(value).width(width);
+        $(value).height(height);
+    })
 }
