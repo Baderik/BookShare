@@ -20,8 +20,11 @@
                       method="POST">
                     {% csrf_token %}
                     <div class="main">
-                        <div class="image-block">
-                            <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                        <div class="main-img">
+                            <img src="{% static 'img/people/profile.png' %}" alt=""
+                                 class="my-image image-wh"
+                                 data-image-wh-width="100%"
+                                 data-image-wh-height="360px">
                         </div>
                         <label>
                             Фамилия:
@@ -110,7 +113,10 @@
                 </form>
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                        <img src="{% static 'img/people/profile.png' %}" alt=""
+                             class="my-image image-wh"
+                             data-image-wh-width="100%"
+                             data-image-wh-height="80%">
                     </div>
                 </div>
             </div>

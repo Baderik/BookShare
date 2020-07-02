@@ -14,19 +14,23 @@
   }
 }
 // Main
+.main {
+  &-img {
+    text-align: center;
+    display: none;
+    margin-bottom: 1rem;
+  }
+}
 .profile {
   .image {
     text-align: left;
     display: table;
-    height: 36rem;
     &-block {
       display: table-cell;
       vertical-align: middle;
+      height: 36rem;
     }
     img {
-      height: 80%;
-      max-width: 100%;
-      //transform: translateX(4px);
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
@@ -57,16 +61,6 @@
       }
       input {
         width: 70%;
-      }
-    }
-    .image {
-      &-block {
-        text-align: center;
-        display: none;
-        img {
-          display: inline-block;
-          max-height: 18rem;
-        }
       }
     }
   }
@@ -139,7 +133,7 @@
 @media (max-width: 991px) {
   .profile {
     &-block {
-      .image-block {
+      .main-img {
         display: block;
       }
       span{
