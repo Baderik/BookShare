@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from people.models import User
+from imageBase.models import ImageModel
 
 
 class Article(models.Model):
@@ -16,7 +17,8 @@ class Article(models.Model):
             ("new", "Новый")), default="old")
     price = models.PositiveIntegerField()
     tags = models.CharField(max_length=255, blank=True)
-    images = models.CharField(max_length=255, blank=True)
+    images = models.ManyToManyField(ImageModel,
+                                    null=True, blank=True)
     avatar = models.PositiveIntegerField()
     date = models.DateTimeField(default=timezone.now)
     phone = models.BooleanField(default=False)
