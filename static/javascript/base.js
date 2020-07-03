@@ -1,5 +1,5 @@
 $(function () {
-    setWidthHeightImg();
+    // setWidthHeightImg();
     // Handlers
     $(".list-btn").click(listPressed);
     $(".link").click(link);
@@ -90,7 +90,6 @@ function copyText(el, format=false) {
 }
 // Width and height img
 function calcMaxSize(max, parentValue) {
-    console.log(max);
     if (max.slice(-1) === "%") {
         max = parseInt(max);
         return  parseInt(parentValue) * max / 100;
@@ -105,10 +104,11 @@ function setWidthHeightImg(image=".image-wh") {
 
         $(value).removeAttr("width")
             .removeAttr("height")
-            .css({ width: "", height: "" });
 
         let width  = parseInt($(value).width());
         let height = parseInt($(value).height());
+        console.log(value)
+        console.log(width, height)
         let maxWidth = calcMaxSize(
             $(value).data("image-wh-width"), parent.width());
         let maxHeight = calcMaxSize(

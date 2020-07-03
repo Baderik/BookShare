@@ -21,10 +21,9 @@
                     {% csrf_token %}
                     <div class="main">
                         <div class="main-img">
-                            <img src="{% static 'img/people/profile.png' %}" alt=""
-                                 class="my-image image-wh"
-                                 data-image-wh-width="100%"
-                                 data-image-wh-height="360px">
+                            <img src="/image/{{ form.image.value }}" alt=""
+                                 class="my-image">
+                            <i class="fas fa-times" title="Удалить фото"></i>
                         </div>
                         <label>
                             Фамилия:
@@ -113,20 +112,24 @@
                 </form>
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="{% static 'img/people/profile.png' %}" alt=""
-                             class="my-image image-wh"
-                             data-image-wh-width="100%"
-                             data-image-wh-height="80%">
+                        <img src="/image/{{ form.image.value }}" alt=""
+                             class="my-image" title="Сменить аватарку">
+                        <i class="fas fa-times" title="Удалить фото"></i>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <form action="/image/" method="POST" class="image-form">
+        {% csrf_token %}
+        {{ imageForm.image }}
+    </form>
 {% endblock %}
 {% block Footer %}
     <script>
         let emailAccept = {% if email %}true{% else %}false{% endif %} ;
         let emailBase = "{{ form.email.value }}";
+        let avatarBase = "{% static 'img/people/user.jpg' %}";
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{% static 'javascript/people/settings.js' %}"></script>

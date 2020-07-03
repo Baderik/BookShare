@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from re import match
 
 from people.forms import SettingsForm
+from imageBase.forms import UploadImageForm
 
 
 class IndexView(View):
@@ -78,19 +79,14 @@ class SettingsView(View):
         if request.user.is_authenticated:
             return render(request, "people/settings.html",
                           {"form": SettingsForm(
+                              instance=request.user.profile,
                               initial={
-                                  "surname": request.user.profile.surname,
-                                  "name": request.user.profile.name,
-                                  "middle_name":
-                                      request.user.profile.middle_name,
-                                  "about": request.user.profile.about,
-                                  "email": request.user.email,
-                                  "phone": request.user.profile.phone,
-                                  "image": request.user.profile.image
+                                  "email": request.user.email
                               }
                           ),
                               "email": request.user.is_active_email,
-                              "user": request.user
+                              "user": request.user,
+                              "imageForm": UploadImageForm
                           })
 
         return redirect("/")
