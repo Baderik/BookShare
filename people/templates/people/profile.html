@@ -115,7 +115,11 @@
             <div class="article row no-gutters">
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
+                    {% for image in article.images.all %}
+                    {% if forloop.counter0 == article.avatar %}
+                        <img src="/image/{{ image.id }}" alt="" class="my-image">
+                    {% endif %}
+                    {% endfor %}
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -133,7 +137,11 @@
                             Подробнее
                         </button>
                         <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
+                        {% for image in article.images.all %}
+                        {% if forloop.counter0 == article.avatar %}
+                            <img src="/image/{{ image.id }}" alt="" class="my-image">
+                        {% endif %}
+                        {% endfor %}
                         </div>
                     </div>
                 </div>
