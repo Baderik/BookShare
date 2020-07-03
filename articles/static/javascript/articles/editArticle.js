@@ -6,8 +6,10 @@ $(function () {
         processing_toggle($(value));
     })
     check_messengers();
+    setAvatar();
     // Handlers
-    $("input.toggle#id_phone").on("change", function (event) {
+    $("input.toggle#id_phone").on("change",
+        function (event) {
         check_messengers();
     })
     $("input#free").on("change", function (event) {
@@ -37,7 +39,7 @@ $(function () {
         variableWidth: true,
         adaptiveHeight: true
     });
-    $("form").on("submit", function(event) {
+    $("form.article-form").on("submit", function(event) {
         $("input.toggle").prop("disabled", false);
         $("input.toggle#free").prop("disabled", true);
 
@@ -71,6 +73,36 @@ $(function () {
             }
             )
     });
+    $(".image-block .fa-times").on("click", function (event) {
+        event.preventDefault();
+        let delId = parseInt($(this).parent().data("slick-slide"));
+        $(".images-slick").slick('slickRemove',
+            $(this).parent().data("slick-slide"));
+        $.each($(".image-block .fa-times"),
+            function (index, value) {
+            let slideId = parseInt($(value).parent().data("slick-slide"));
+
+            if (delId < slideId) {
+                $(value).parent().data("slick-slide", slideId - 1);
+                if ($(value).siblings(".fa-star")
+                    .hasClass("avatar")) {
+                    $(".article-form #id_avatar").val(
+                        slideId - 1
+                    );
+                }
+            }
+        });
+        setAvatar();
+    })
+    $(".image-block .fa-star").on("click", function (event) {
+        event.preventDefault();
+        let slideId = $(this).parent().data("slick-slide");
+        $(".article-form #id_avatar").val(slideId);
+        setAvatar();
+    })
+    $(".image-block .fa-plus").on("click", function (event) {
+
+    })
 })
 
 function checkFree() {
@@ -151,4 +183,28 @@ function setMessage(text, color) {
     let top = $('header').offset().top;
     $(".message").fadeIn();
     $('html').animate({ "scrollTop": top }, "1100");
+}
+
+
+function setAvatar() {
+    let avatar = parseInt($(".article-form #id_avatar").val());
+    let wasAvatar = false;
+
+    if (!avatar) {
+        avatar = 0
+        $(".article-form #id_avatar").val(avatar);
+    }
+    $.each($(".image-block"), function (index, value) {
+       if ($(value).data("slick-slide") === avatar) {
+           $(value).children(".fa-star").addClass("avatar");
+           wasAvatar = true;
+       }
+       else
+           $(value).children(".fa-star").removeClass("avatar")
+    });
+
+    if (!wasAvatar) {
+        $(".article-form #id_avatar").val("0");
+        if ($(".image-block").length < 2) setAvatar();
+    }
 }

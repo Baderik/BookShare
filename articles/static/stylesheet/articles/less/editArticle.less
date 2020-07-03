@@ -6,25 +6,6 @@
 @import "../../../../../static/stylesheet/less/toggle.less";
 
 
-// Colors
-@close: #F44336;
-// Animation
-@keyframes close-out {
-  from {
-    color: @close;
-  }
-  to {
-    color: @font
-  }
-}
-@keyframes close {
-  from {
-    color: @font;
-  }
-  to {
-    color: @close;
-  }
-}
 // Base
 .nav {
     margin-bottom: 3rem;
@@ -110,7 +91,7 @@ input, select {
     top: 0;
     left: 0;
     width: 100%;
-    color: @close;
+    color: @danger;
     text-align: center;
     display: none;
     background-color: @dark;
@@ -133,31 +114,59 @@ input, select {
 }
 // Images
 .images-slick {
-  * {
-    margin-right: 1rem;
-  }
+  //* {
+  //  margin-right: 1rem;
+  //}
   .image-wrap {
     display: table;
-    height: 50rem; // Нужно менять относительно максимального изображения
+    height: 50rem;
+    max-width: 30%;
     .image {
       display: table-cell;
       vertical-align: middle;
+      max-width: 100%;
       &-block {
+        margin-right: 1rem;
         position: relative;
+        max-width: 100%;
+        img {
+          max-height: 50rem;
+          max-width: 100%;
+        }
         .fa-times {
           position: absolute;
           top: 0.5rem;
           right: 0.5rem;
-          color: @font;
           font-size: 2rem;
           cursor: pointer;
-          //z-index: 2;
-          &:not(:hover) {
-            animation: close-out 0.5s forwards;
-          }
+        }
+        .fa-star {
+          position: absolute;
+          top: 0.5rem;
+          right: 2.5rem;
+          font-size: 1.8rem;
+          cursor: pointer;
           &:hover {
-            animation: close 0.5s forwards;
+            animation: icon-star 0.5s forwards;
           }
+          &:not(:hover) {
+            animation: icon-star-out 0.5s forwards;
+          }
+        }
+        .avatar {
+          cursor: default;
+          color: @interface;
+          &:hover {
+            animation: none;
+          }
+          &:not(:hover) {
+            animation: none;
+          }
+        }
+        .fa-plus {
+          position: absolute;
+          cursor: pointer;
+          font-size: 10rem;
         }
       }
     }
@@ -245,10 +254,6 @@ i {
 // Button
 .button-out {
   margin-top: 10rem;
-}
-// Form
-.article-form {
-  display: none;
 }
 // Extra large
 @media (min-width: 1200px) {
