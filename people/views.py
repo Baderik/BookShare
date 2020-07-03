@@ -23,7 +23,8 @@ class ProfileView(View):
         return render(request, "people/profile.html", {
             "user": request.user,
             "owner": user,
-            "is_owner": request.user.id == user.id
+            "is_owner": request.user.id == user.id,
+            "articles": user.article_set.order_by("-date")
         })
 
     @staticmethod
