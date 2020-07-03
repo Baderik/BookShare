@@ -257,6 +257,22 @@
     color: @blur;
   }
 }
+@keyframes icon-close-out {
+  from {
+    color: @danger;
+  }
+  to {
+    color: @font
+  }
+}
+@keyframes icon-close {
+  from {
+    color: @font;
+  }
+  to {
+    color: @danger;
+  }
+}
 .social, .icons {
   display: flex;
   justify-content: space-around;
@@ -372,5 +388,17 @@
   }
   &:hover {
     animation: icon-case 0.5s forwards;
+  }
+}
+.fa-times {
+  cursor: pointer;
+  &.active {
+    color: @danger;
+  }
+  &:not(:hover){
+    animation: icon-close-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-close 0.5s forwards;
   }
 }
