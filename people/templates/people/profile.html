@@ -15,7 +15,11 @@
             <div class="row profile no-gutters">
                 <div class="col-12 col-lg-6 profile-block">
                     <div class="image-block">
-                        <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                    {% if user.profile.image %}
+                        <img src="/image/{{ user.profile.image }}" alt="" class="my-image">
+                    {% else %}
+                        <img src="{% static 'img/people/user.jpg' %}" alt="" class="my-image">
+                    {% endif %}
                     </div>
                     <span class="name">
                     {% if owner.is_active %}
@@ -88,7 +92,11 @@
                 </div>
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                    {% if user.profile.image %}
+                        <img src="/image/{{ user.profile.image }}" alt="" class="my-image">
+                    {% else %}
+                        <img src="{% static 'img/people/user.jpg' %}" alt="" class="my-image">
+                    {% endif %}
                     </div>
                 </div>
             </div>
