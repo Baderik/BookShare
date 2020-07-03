@@ -17,8 +17,7 @@ class Article(models.Model):
             ("new", "Новый")), default="old")
     price = models.PositiveIntegerField()
     tags = models.CharField(max_length=255, blank=True)
-    images = models.ManyToManyField(ImageModel,
-                                    null=True, blank=True)
+    images = models.ManyToManyField(ImageModel)
     avatar = models.PositiveIntegerField()
     date = models.DateTimeField(default=timezone.now)
     phone = models.BooleanField(default=False)
