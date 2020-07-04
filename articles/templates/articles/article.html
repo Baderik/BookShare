@@ -36,24 +36,20 @@
                 readonly>
             </label>
             <div class="row subject offset-1 col-10">
-                <span class="tag">Русский язык</span>
-                <span class="tag">Английский язык</span>
-                <span class="tag">Математика</span>
-                <span class="tag">Химия</span>
-                <span class="tag">Биология</span>
+            {% for subject in subjects %}
+                <span class="tag" title="Найти записи с этим тегом"
+                data-tag-id="{{ subject.id }}">
+                {{ subject.value }}
+                </span>
+            {% endfor %}
             </div>
             <div class="row classroom offset-1 col-10">
-                <span class="tag">1 класс</span>
-                <span class="tag">2 класс</span>
-                <span class="tag">3 класс</span>
-                <span class="tag">4 класс</span>
-                <span class="tag">5 класс</span>
-                <span class="tag">6 класс</span>
-                <span class="tag">7 класс</span>
-                <span class="tag">8 класс</span>
-                <span class="tag">9 класс</span>
-                <span class="tag">10 класс</span>
-                <span class="tag">11 класс</span>
+            {% for classroom in classrooms %}
+                <span class="tag" title="Найти записи с этим тегом"
+                data-tag-id="{{ classroom.id }}">
+                {{ classroom.value }}
+                </span>
+            {% endfor %}
             </div>
         </div>
     </main>

@@ -59,7 +59,11 @@ class ArticleView(View):
                       {
                           "user": request.user,
                           "article": article,
-                          "is_owner": request.user.id == article.author.id
+                          "is_owner": request.user.id == article.author.id,
+                          "subjects": article.tags.all().filter(
+                              group="subject").order_by("value"),
+                          "classrooms": article.tags.all().filter(
+                              group="classroom")
                       })
 
     @staticmethod
@@ -122,6 +126,10 @@ class EditView(View):
                           "subjects": Tag.objects.filter(
                               group="subject").order_by("value"),
                           "classrooms": Tag.objects.filter(
+                              group="classroom"),
+                          "subjectsArticle": article.tags.all().filter(
+                              group="subject").order_by("value"),
+                          "classroomsArticle": article.tags.all().filter(
                               group="classroom")
                       })
 

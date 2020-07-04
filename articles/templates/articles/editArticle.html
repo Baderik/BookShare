@@ -25,8 +25,8 @@
                     {{ form.tittle }}
                 </label>
                 <div class="row subject offset-1 col-10">
-                {% for subject in subjects %}
-                    <span class="tag" title="Найти записи с этим тегом"
+                {% for subject in subjectsArticle %}
+                    <span class="tag" title="Удалить тег у записи"
                     data-tag-id="{{ subject.id }}">
                     <i class="fas fa-times"></i>
                     {{ subject.value }}
@@ -35,8 +35,8 @@
                     <span class="tag add"><i class="fas fa-plus"></i></span>
                 </div>
                 <div class="row classroom offset-1 col-10">
-                {% for classroom in classrooms %}
-                    <span class="tag" title="Найти записи с этим тегом"
+                {% for classroom in classroomsArticle %}
+                    <span class="tag" title="Удалить тег у записи"
                     data-tag-id="{{ classroom.id }}">
                     <i class="fas fa-times"></i>
                     {{ classroom.value }}

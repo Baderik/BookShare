@@ -15,7 +15,6 @@ class ArticleForm(forms.ModelForm):
             'description': forms.Textarea(attrs={"placeholder": "Новое описание",
                                                  "rows": "",
                                                  "cols": ""}),
-            'tags': forms.HiddenInput(),
             'avatar': forms.HiddenInput(attrs={"value": 0}),
             'phone': forms.CheckboxInput(attrs={
                 "class": "toggle",
