@@ -66,38 +66,16 @@
         </div>
         <div class="container">
             <div class="row offset-1 col-10 images-slick">
+            {% for image in article.images.all %}
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/book1.png' %}"
+                            <img src="/image/{{ image.id }}"
                                  alt="" class="my-image">
                         </div>
                     </div>
                 </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book2.png' %}"
-                                 alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book3.png' %}"
-                                 alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}"
-                                 alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
             </div>
         </div>
     </section>

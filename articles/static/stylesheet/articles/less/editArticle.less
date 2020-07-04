@@ -120,15 +120,13 @@ input, select {
   .image-wrap {
     display: table;
     height: 50rem;
-    max-width: 30%;
     .image {
       display: table-cell;
       vertical-align: middle;
-      max-width: 100%;
       &-block {
         margin-right: 1rem;
         position: relative;
-        max-width: 100%;
+        max-width: 80%;
         img {
           max-height: 50rem;
           max-width: 100%;
@@ -164,11 +162,14 @@ input, select {
           }
         }
         .fa-plus {
-          position: absolute;
+          //position: absolute;
           cursor: pointer;
           font-size: 10rem;
         }
       }
+    }
+    &.add-slide {
+      width: 9.75rem;
     }
   }
 }
@@ -255,13 +256,28 @@ i {
 .button-out {
   margin-top: 10rem;
 }
+// Form
+.article-form {
+  #id_images {
+    display: none;
+  }
+}
+.image-form {
+  display: none;
+}
 // Extra large
 @media (min-width: 1200px) {
 
 }
 // Large
 @media (max-width: 1199px) {
-
+  .images-slick {
+    .image-wrap {
+      .image-block {
+        max-width: 50%;
+      }
+    }
+  }
 }
 // Medium
 @media (max-width: 991px) {

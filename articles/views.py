@@ -4,6 +4,7 @@ from django.http import JsonResponse
 
 from articles.forms import ArticleForm
 from articles.models import Article
+from imageBase.forms import UploadImageForm
 
 
 class IndexView(View):
@@ -26,6 +27,7 @@ class IndexView(View):
         new_post = form.save(commit=False)
         new_post.author = request.user
         new_post.save()
+        form.save_m2m()
 
         return JsonResponse({"code": "303",
                              "message": "Вам туда",
@@ -72,6 +74,7 @@ class ArticleView(View):
 
         new_post = form.save(commit=False)
         new_post.save()
+        form.save_m2m()
 
         return JsonResponse({"code": "303",
                              "message": "Вам туда",
@@ -84,7 +87,8 @@ class AddView(View):
         return render(request, "articles/editArticle.html",
                       {
                           "user": request.user,
-                          "form": ArticleForm()
+                          "form": ArticleForm(),
+                          "imageForm": UploadImageForm()
                       })
 
 
@@ -102,7 +106,8 @@ class EditView(View):
                       {
                           "user": request.user,
                           "form": ArticleForm(instance=article),
-                          "id": article.id
+                          "id": article.id,
+                          "imageForm": UploadImageForm()
                       })
 
 

@@ -1,13 +1,23 @@
 $(function () {
+    let imagesCount = 0;
+    let imagesInput = $("select#id_images").val();
+    if (imagesInput) {
+        setTimeout(function () {
+            $.each(imagesInput,
+            function (index, value) {
+                addImage(value);
+            })
+        }, 100)
+    }
     // Functions
     turn_off();
     checkFree();
     $.each($("input.toggle"), function (index, value) {
         processing_toggle($(value));
     })
+    $("select#id_images").prop("required", false);
     check_messengers();
-    setAvatar();
-    // Handlers
+    setAvatar();    // Handlers
     $("input.toggle#id_phone").on("change",
         function (event) {
         check_messengers();
@@ -40,6 +50,7 @@ $(function () {
         adaptiveHeight: true
     });
     $("form.article-form").on("submit", function(event) {
+        event.preventDefault();
         $("input.toggle").prop("disabled", false);
         $("input.toggle#free").prop("disabled", true);
 
@@ -51,10 +62,17 @@ $(function () {
                 return false;
             }
         })
-
         if (!author) {
             event.preventDefault();
-            setMessage("Выберите хотя бы один сз способ связи с вами", "red");
+            setMessage("Выберите хотя бы один из способ связи с вами",
+                "red");
+            return;
+        }
+        imagesField();
+        // event.preventDefault();
+        // return;
+        if (!$("#id_images").val()) {
+            setMessage("Добавьте хотя бы одно изображение", "red");
             return;
         }
         formRequest(event,
@@ -99,10 +117,42 @@ $(function () {
         let slideId = $(this).parent().data("slick-slide");
         $(".article-form #id_avatar").val(slideId);
         setAvatar();
-    })
+    });
     $(".image-block .fa-plus").on("click", function (event) {
-
-    })
+        $("form.image-form #id_image").click();
+    });
+    $("form.image-form #id_image").on("change", function (event) {
+        $("form.image-form").submit();
+    });
+    $("form.image-form").on("submit", function (event) {
+        imageRequest(event,
+            function (response) {
+                let color = ""
+                if (response.code !== "200") {
+                    color = "red";
+                    setMessage(response.message, color)
+                }
+                if (response.code === "200") {
+                    addImage(response.id);
+                }
+            },
+            function (response) {
+                setMessage("Произошла ошибка", "red")
+            }
+        )
+    });
+    function addImage(imgId) {
+        let imageSlide = `<div class="image-wrap">
+        <div class="image">
+        <div class="image-block" data-slick-slide="${imagesCount}">
+        <img src="/image/${imgId}" alt="" class="my-image">
+        <i class="fas fa-times"></i>
+        <i class="fas fa-star avatar"></i>
+        </div></div></div>`;
+        $(".images-slick").slick('slickAdd', imageSlide, imagesCount, true);
+        imagesCount++;
+        setAvatar();
+    }
 })
 
 function checkFree() {
@@ -205,6 +255,16 @@ function setAvatar() {
 
     if (!wasAvatar) {
         $(".article-form #id_avatar").val("0");
-        if ($(".image-block").length < 2) setAvatar();
+        if ($(".image-block").length > 2) setAvatar();
     }
+}
+function imagesField() {
+    let imageSelect = $("select#id_images");
+    imageSelect.empty();
+    $.each($(".image-block img"), function (index, value) {
+        imageSelect.append(
+            `<option value="${$(value).attr("src").split("/").pop()}">
+            новый option</option>`)
+    });
+    $("select#id_images option").prop('selected', true);
 }

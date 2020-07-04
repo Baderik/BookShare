@@ -57,47 +57,47 @@
             </div>
             <div class="container">
                 <div class="row offset-1 col-10 images-slick">
-                    <div class="image-wrap">
-                        <div class="image">
-                            <div class="image-block"
-                                 data-slick-slide="0">
-                                <img src="{% static 'img/articles/book1.png' %}." alt="" class="my-image">
-                                <i class="fas fa-times"></i>
-                                <i class="fas fa-star avatar"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-wrap">
-                        <div class="image">
-                            <div class="image-block"
-                                 data-slick-slide="1">
-                                <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">
-                                <i class="fas fa-times"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-wrap">
-                        <div class="image">
-                            <div class="image-block"
-                                 data-slick-slide="2">
-                                <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">
-                                <i class="fas fa-times"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-wrap">
-                        <div class="image">
-                            <div class="image-block"
-                                 data-slick-slide="3">
-                                <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                                <i class="fas fa-times"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="image-wrap">
+{#                    <div class="image-wrap">#}
+{#                        <div class="image">#}
+{#                            <div class="image-block"#}
+{#                                 data-slick-slide="0">#}
+{#                                <img src="{% static 'img/articles/book1.png' %}." alt="" class="my-image">#}
+{#                                <i class="fas fa-times"></i>#}
+{#                                <i class="fas fa-star avatar"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="image-wrap">#}
+{#                        <div class="image">#}
+{#                            <div class="image-block"#}
+{#                                 data-slick-slide="1">#}
+{#                                <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">#}
+{#                                <i class="fas fa-times"></i>#}
+{#                                <i class="fas fa-star"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="image-wrap">#}
+{#                        <div class="image">#}
+{#                            <div class="image-block"#}
+{#                                 data-slick-slide="2">#}
+{#                                <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">#}
+{#                                <i class="fas fa-times"></i>#}
+{#                                <i class="fas fa-star"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="image-wrap">#}
+{#                        <div class="image">#}
+{#                            <div class="image-block"#}
+{#                                 data-slick-slide="3">#}
+{#                                <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">#}
+{#                                <i class="fas fa-times"></i>#}
+{#                                <i class="fas fa-star"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                    <div class="image-wrap add-slide">
                         <div class="image">
                             <div class="image-block">
                                 <i class="fas fa-plus"
@@ -257,6 +257,10 @@
     {{ form.images }}
     {{ form.tags }}
     {{ form.avatar }}
+    </form>
+    <form action="/image/" method="POST" class="image-form">
+        {% csrf_token %}
+        {{ imageForm.image }}
     </form>
 {% endblock %}
 {% block Footer %}
