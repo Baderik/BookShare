@@ -34,3 +34,8 @@ class Article(models.Model):
 class Quote(models.Model):
     text = models.CharField(max_length=150)
     author = models.CharField(max_length=50)
+
+
+class Tag(models.Model):
+    group = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
