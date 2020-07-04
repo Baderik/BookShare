@@ -29,3 +29,8 @@ class Article(models.Model):
     telegram = models.BooleanField(default=False)
     whatsapp = models.BooleanField(default=False)
     viber = models.BooleanField(default=False)
+
+
+class Quote(models.Model):
+    text = models.CharField(max_length=150)
+    author = models.CharField(max_length=50)
