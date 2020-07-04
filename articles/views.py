@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.http import JsonResponse
 
+from random import choice
+
 from articles.forms import ArticleForm
-from articles.models import Article
+from articles.models import Article, Quote
 from imageBase.forms import UploadImageForm
 
 
@@ -39,7 +41,8 @@ class SearchView(View):
     def get(request):
         return render(request, "articles/search.html",
                       {
-                          "user": request.user
+                          "user": request.user,
+                          "quote": choice(Quote.objects.all())
                       })
 
 
