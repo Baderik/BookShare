@@ -30,26 +30,22 @@
             </label>
             <div class="row">
                 <div class="subject offset-1 col-10">
-                    <span class="tag" title="Добавить тег к поиску">Русский язык</span>
-                    <span class="tag" title="Добавить тег к поиску">Английский язык</span>
-                    <span class="tag" title="Добавить тег к поиску">Математика</span>
-                    <span class="tag" title="Добавить тег к поиску">Химия</span>
-                    <span class="tag" title="Добавить тег к поиску">Биология</span>
+                {% for subject in subjects %}
+                    <span class="tag" title="Добавить тег к поиску"
+                    data-tag-id="{{ subject.id }}">
+                        {{ subject.value }}
+                    </span>
+                {% endfor %}
                 </div>
             </div>
             <div class="row">
                 <div class="classroom offset-1 col-10">
-                    <span class="tag" title="Добавить тег к поиску">1 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">2 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">3 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">4 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">5 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">6 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">7 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">8 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">9 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">10 класс</span>
-                    <span class="tag" title="Добавить тег к поиску">11 класс</span>
+                {% for classroom in classrooms %}
+                    <span class="tag" title="Добавить тег к поиску"
+                    data-tag-id="{{ classroom.id }}">
+                        {{ classroom.value }}
+                    </span>
+                {% endfor %}
                 </div>
             </div>
         </div>

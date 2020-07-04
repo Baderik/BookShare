@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from random import choice
 
 from articles.forms import ArticleForm
-from articles.models import Article, Quote
+from articles.models import Article, Quote, Tag
 from imageBase.forms import UploadImageForm
 
 
@@ -42,7 +42,11 @@ class SearchView(View):
         return render(request, "articles/search.html",
                       {
                           "user": request.user,
-                          "quote": choice(Quote.objects.all())
+                          "quote": choice(Quote.objects.all()),
+                          "subjects": Tag.objects.filter(
+                              group="subject").order_by("value"),
+                          "classrooms": Tag.objects.filter(
+                              group="classroom")
                       })
 
 
