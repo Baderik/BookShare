@@ -5,6 +5,11 @@ from people.models import User
 from imageBase.models import ImageModel
 
 
+class Tag(models.Model):
+    group = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
+
+
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tittle = models.CharField(max_length=255)
@@ -16,7 +21,7 @@ class Article(models.Model):
             ("old", "Б/у"),
             ("new", "Новый")), default="old")
     price = models.PositiveIntegerField()
-    tags = models.CharField(max_length=255, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
     images = models.ManyToManyField(ImageModel)
     avatar = models.PositiveIntegerField()
     date = models.DateTimeField(default=timezone.now)
@@ -34,8 +39,3 @@ class Article(models.Model):
 class Quote(models.Model):
     text = models.CharField(max_length=150)
     author = models.CharField(max_length=50)
-
-
-class Tag(models.Model):
-    group = models.CharField(max_length=255)
-    value = models.CharField(max_length=255)
