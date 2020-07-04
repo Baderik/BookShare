@@ -95,7 +95,11 @@ class AddView(View):
                       {
                           "user": request.user,
                           "form": ArticleForm(),
-                          "imageForm": UploadImageForm()
+                          "imageForm": UploadImageForm(),
+                          "subjects": Tag.objects.filter(
+                              group="subject").order_by("value"),
+                          "classrooms": Tag.objects.filter(
+                              group="classroom")
                       })
 
 
@@ -114,7 +118,11 @@ class EditView(View):
                           "user": request.user,
                           "form": ArticleForm(instance=article),
                           "id": article.id,
-                          "imageForm": UploadImageForm()
+                          "imageForm": UploadImageForm(),
+                          "subjects": Tag.objects.filter(
+                              group="subject").order_by("value"),
+                          "classrooms": Tag.objects.filter(
+                              group="classroom")
                       })
 
 

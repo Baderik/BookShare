@@ -25,26 +25,24 @@
                     {{ form.tittle }}
                 </label>
                 <div class="row subject offset-1 col-10">
-                    <span class="tag"><i class="fas fa-times"></i>Русский язык</span>
-                    <span class="tag"><i class="fas fa-times"></i>Английский язык</span>
-                    <span class="tag"><i class="fas fa-times"></i>Математика</span>
-                    <span class="tag"><i class="fas fa-times"></i>Химия</span>
-                    <span class="tag"><i class="fas fa-times"></i>Биология</span>
-                    <span class="tag"><i class="fas fa-plus"></i></span>
+                {% for subject in subjects %}
+                    <span class="tag" title="Найти записи с этим тегом"
+                    data-tag-id="{{ subject.id }}">
+                    <i class="fas fa-times"></i>
+                    {{ subject.value }}
+                    </span>
+                {% endfor %}
+                    <span class="tag add"><i class="fas fa-plus"></i></span>
                 </div>
                 <div class="row classroom offset-1 col-10">
-                    <span class="tag"><i class="fas fa-times"></i>1 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>2 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>3 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>4 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>5 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>6 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>7 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>8 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>9 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>10 класс</span>
-                    <span class="tag"><i class="fas fa-times"></i>11 класс</span>
-                    <span class="tag"><i class="fas fa-plus"></i></span>
+                {% for classroom in classrooms %}
+                    <span class="tag" title="Найти записи с этим тегом"
+                    data-tag-id="{{ classroom.id }}">
+                    <i class="fas fa-times"></i>
+                    {{ classroom.value }}
+                    </span>
+                {% endfor %}
+                    <span class="tag add"><i class="fas fa-plus"></i></span>
                 </div>
             </div>
         </main>
@@ -57,46 +55,6 @@
             </div>
             <div class="container">
                 <div class="row offset-1 col-10 images-slick">
-{#                    <div class="image-wrap">#}
-{#                        <div class="image">#}
-{#                            <div class="image-block"#}
-{#                                 data-slick-slide="0">#}
-{#                                <img src="{% static 'img/articles/book1.png' %}." alt="" class="my-image">#}
-{#                                <i class="fas fa-times"></i>#}
-{#                                <i class="fas fa-star avatar"></i>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="image-wrap">#}
-{#                        <div class="image">#}
-{#                            <div class="image-block"#}
-{#                                 data-slick-slide="1">#}
-{#                                <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">#}
-{#                                <i class="fas fa-times"></i>#}
-{#                                <i class="fas fa-star"></i>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="image-wrap">#}
-{#                        <div class="image">#}
-{#                            <div class="image-block"#}
-{#                                 data-slick-slide="2">#}
-{#                                <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">#}
-{#                                <i class="fas fa-times"></i>#}
-{#                                <i class="fas fa-star"></i>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="image-wrap">#}
-{#                        <div class="image">#}
-{#                            <div class="image-block"#}
-{#                                 data-slick-slide="3">#}
-{#                                <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">#}
-{#                                <i class="fas fa-times"></i>#}
-{#                                <i class="fas fa-star"></i>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
                     <div class="image-wrap add-slide">
                         <div class="image">
                             <div class="image-block">
@@ -262,6 +220,31 @@
         {% csrf_token %}
         {{ imageForm.image }}
     </form>
+    <div class="popup">
+        <div class="row">
+            <div class="offset-1 col-10 popup-block">
+                <div class="subjects">
+                {% for subject in subjects %}
+                    <span class="tag" title="Добавить тег к записи"
+                    data-tag-id="{{ subject.id }}">
+                    {{ subject.value }}
+                    </span>
+                {% endfor %}
+                </div>
+                <div class="classrooms">
+                {% for classroom in classrooms %}
+                    <span class="tag" title="Добавить тег к записи"
+                    data-tag-id="{{ classroom.id }}">
+                    {{ classroom.value }}
+                    </span>
+                {% endfor %}
+                </div>
+                <div class="popup-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block Footer %}
     <script>

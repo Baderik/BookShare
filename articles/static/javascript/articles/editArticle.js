@@ -17,7 +17,8 @@ $(function () {
     })
     $("select#id_images").prop("required", false);
     check_messengers();
-    setAvatar();    // Handlers
+    setAvatar();
+    // Handlers
     $("input.toggle#id_phone").on("change",
         function (event) {
         check_messengers();
@@ -140,6 +141,26 @@ $(function () {
                 setMessage("Произошла ошибка", "red")
             }
         )
+    });
+    $(".subject .tag.add").on("click", function (event) {
+        getActiveTags();
+        $(".classrooms").hide();
+        $(".subjects").show();
+        $(".popup").fadeIn();
+    });
+    $(".classroom .tag.add").on("click", function (event) {
+        getActiveTags();
+        $(".classrooms").show();
+        $(".subjects").hide();
+        $(".popup").fadeIn();
+    });
+    $(".popup-close").on("click", function (event) {
+        setActiveTags();
+        $(".popup").fadeOut();
+    });
+    $(".popup .tag").on("click", function (event) {
+       if ($(this).hasClass("selected")) $(this).removeClass("selected");
+        else $(this).addClass("selected");
     });
     function addImage(imgId) {
         let imageSlide = `<div class="image-wrap">
@@ -267,4 +288,42 @@ function imagesField() {
             новый option</option>`)
     });
     $("select#id_images option").prop('selected', true);
+}
+function getActiveTags() {
+    let activeSubject = $(".subject .tag:not(.add)");
+    let activeClassroom = $(".classroom .tag:not(.add)");
+    $(".subjects .tag").removeClass("selected");
+    $(".classrooms .tag").removeClass("selected");
+    $.each(activeSubject, function (index, value) {
+        $(`.subjects .tag[data-tag-id="${$(value).data("tag-id")}"]`).addClass("selected");
+    });
+    $.each(activeClassroom, function (index, value) {
+        $(`.classrooms .tag[data-tag-id="${$(value).data("tag-id")}"]`).addClass("selected");
+    });
+}
+function setActiveTags() {
+    let activeSubject = $(".popup .subjects .tag.selected");
+    let activeClassroom = $(".popup .classrooms .tag.selected");
+    let sliderSubject = $(".subject");
+    let sliderClassroom = $(".classroom");
+    $(".subject .tag:not(.add)").remove();
+    $(".classroom .tag:not(.add)").remove();
+    $.each(activeSubject, function (index, value) {
+        sliderSubject.slick('slickAdd',
+        `<span class="tag" title="Найти записи с этим тегом" 
+            data-tag-id="${$(value).data("tag-id")}">
+            <i class="fas fa-times"></i>
+            ${$(value).text()}
+         </span>`,
+        sliderSubject.slick("getSlick").slideCount - 1, true);
+    })
+    $.each(activeClassroom, function (index, value) {
+        sliderClassroom.slick('slickAdd',
+        `<span class="tag" title="Найти записи с этим тегом" 
+            data-tag-id="${$(value).data("tag-id")}">
+            <i class="fas fa-times"></i>
+            ${$(value).text()}
+         </span>`,
+        sliderClassroom.slick("getSlick").slideCount - 1, true);
+    })
 }
