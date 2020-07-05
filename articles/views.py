@@ -1,10 +1,12 @@
+from django.core.serializers import serialize
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.http import JsonResponse
 
 from random import choice
+from json import loads
 
-from articles.forms import ArticleForm
+from articles.forms import ArticleForm, SearchForm
 from articles.models import Article, Quote, Tag
 from imageBase.forms import UploadImageForm
 
@@ -16,12 +18,15 @@ class IndexView(View):
 
     @staticmethod
     def post(request):
-        if not request.user.is_authenticated or not request.user.is_active:
-            return JsonResponse({"code": "403", "message": "Вам туда нельзя"})
+        if not request.user.is_authenticated or\
+                not request.user.is_active:
+            return JsonResponse({"code": "403",
+                                 "message": "Вам туда нельзя"})
 
         form = ArticleForm(request.POST)
 
-        if not form.is_valid() or not processing_checkbox(form, request.user):
+        if not form.is_valid() or\
+                not processing_checkbox(form, request.user):
             return JsonResponse(
                 {"code": "400",
                  "message": "Проверьте правильно ли заполнены поля"})
@@ -39,15 +44,49 @@ class IndexView(View):
 class SearchView(View):
     @staticmethod
     def get(request):
-        return render(request, "articles/search.html",
-                      {
-                          "user": request.user,
-                          "quote": choice(Quote.objects.all()),
-                          "subjects": Tag.objects.filter(
-                              group="subject").order_by("value"),
-                          "classrooms": Tag.objects.filter(
-                              group="classroom")
-                      })
+        if not request.is_ajax():
+            return render(request, "articles/search.html",
+                          {
+                              "user": request.user,
+                              "quote": choice(Quote.objects.all()),
+                              "subjects": Tag.objects.filter(
+                                  group="subject").order_by("value"),
+                              "classrooms": Tag.objects.filter(
+                                  group="classroom"),
+                              "form": SearchForm()
+                          })
+
+        form = SearchForm(request.GET)
+        count = 5
+
+        if not form.is_valid():
+            return JsonResponse(
+                {"code": "400",
+                 "message": "Проверьте правильно ли заполнены поля"})
+        print(form.cleaned_data["tags"])
+        first_article = form.cleaned_data["firstArticle"]
+
+        if first_article == -1:
+            return JsonResponse({"code": "200", "articles": [], "nextArticle": -1})
+
+        articles = Article.objects.filter(tittle__icontains=form.cleaned_data["search"]).order_by("-date")
+
+        if articles.count() > count + first_article:  # Записей больше чем нужно
+            articles = articles[first_article:count + first_article]
+            next_article = count + first_article
+
+        elif articles.count() >= first_article:
+            articles = articles[first_article:]
+            next_article = -1
+
+        else:
+            return JsonResponse(
+                {"code": "400",
+                 "message": "Проверьте правильно ли заполнены поля"})
+
+        articles = serialize("json", articles)
+
+        return JsonResponse({"code": "200", "articles": loads(articles), "nextArticle": next_article})
 
 
 class ArticleView(View):
@@ -73,7 +112,8 @@ class ArticleView(View):
         if not request.user.is_authenticated or\
                 not request.user.is_active or \
                 request.user.id != article.author.id:
-            return JsonResponse({"code": "403", "message": "Вам туда нельзя"})
+            return JsonResponse({"code": "403",
+                                 "message": "Вам туда нельзя"})
 
         form = ArticleForm(request.POST, instance=article)
 

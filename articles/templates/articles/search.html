@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block Head %}
-    <link rel="stylesheet" href="{% static 'stylesheet/articles/css/search.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'stylesheet/articles/css/search.min.css' %}">
 {% endblock %}
 {% block Title %}Search{% endblock %}
 {% block Content %}
@@ -20,15 +21,21 @@
                     Добавить запись
                 </div>
             </div>
-            <label class="row search no-gutters">
+            <form action="" method="GET" class="search-form">
+                {% csrf_token %}
+                <label class="row search no-gutters">
                 <span class="col-9 offset-md-1 box box-input">
-                    <input type="text">
+                    {{ form.search }}
                 </span>
-                <span class="col-3 col-md-2 box">
-                    <button class="my-button" title="Да наступит поиск">Найти</button>
+                    <span class="col-3 col-md-2 box">
+                    <button class="my-button"
+                            title="Да наступит поиск" type="submit">Найти</button>
                 </span>
-            </label>
-            <div class="row">
+                </label>
+                {{ form.tags }}
+                {{ form.firstArticle }}
+            </form>
+            <div class="row tags">
                 <div class="subject offset-1 col-10">
                 {% for subject in subjects %}
                     <span class="tag" title="Добавить тег к поиску"
@@ -38,7 +45,7 @@
                 {% endfor %}
                 </div>
             </div>
-            <div class="row">
+            <div class="row tags">
                 <div class="classroom offset-1 col-10">
                 {% for classroom in classrooms %}
                     <span class="tag" title="Добавить тег к поиску"
@@ -58,87 +65,13 @@
     </main>
     <section class="articles">
         <div class="container">
-            <div class="article row no-gutters">
-                <div class="col-6 image">
-                    <div class="image-block">
-                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="article-block">
-                        <div class="block-top">
-                            <span class="date">1 января 2020 16:00</span>
-                            <span class="seen">198</span>
-                        </div>
-                        <h3>Продам учебник, много учебников</h3>
-                        <span class="desc">
-                            Большое описание, с гигантским количестовом символов.
-                            И одним смайликом, думаю он скоро появится
-                        </span>
-                        <button class="my-button link" data-link-href="/articles/article">
-                            Подробнее
-                        </button>
-                        <br>
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="article row no-gutters">
-                <div class="col-6 image">
-                    <div class="image-block">
-                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="article-block">
-                        <div class="block-top">
-                            <span class="date">1 января 2020 16:00</span>
-                            <span class="seen">198</span>
-                        </div>
-                        <h3>Продам учебник, много учебников</h3>
-                        <span class="desc">
-                            Большое описание, с гигантским количестовом символов.
-                            И одним смайликом, думаю он скоро появится
-                        </span>
-                        <button class="my-button">
-                            Подробнее
-                        </button>
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="article row no-gutters">
-                <div class="col-6 image">
-                    <div class="image-block">
-                        <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="article-block">
-                        <div class="block-top">
-                            <span class="date">1 января 2020 16:00</span>
-                            <span class="seen">198</span>
-                        </div>
-                        <h3>Продам учебник, много учебников</h3>
-                        <span class="desc">
-                            Большое описание, с гигантским количестовом символов.
-                            И одним смайликом, думаю он скоро появится
-                        </span>
-                        <button class="my-button">
-                            Подробнее
-                        </button>
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="button-out">
-                <button class="my-button">Больше</button>
+                <button class="my-button articles-button">Больше</button>
+            </div>
+            <div class="row nothing">
+                <span class="nothing-text">
+                    Ничего не найдено
+                </span>
             </div>
         </div>
     </section>

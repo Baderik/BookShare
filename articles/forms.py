@@ -1,6 +1,6 @@
 from django import forms
 
-from articles.models import Article
+from articles.models import Article, Tag
 
 
 class ArticleForm(forms.ModelForm):
@@ -50,3 +50,12 @@ class ArticleForm(forms.ModelForm):
                 "data-disabled-title": "Вы не указали номер телефона"
                 }),
         }
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(required=False)
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects,
+                                          required=False)
+    firstArticle = forms.IntegerField(widget=forms.HiddenInput())
+    tags.widget.attrs["style"] = "display: none;"
+    firstArticle.widget.attrs["value"] = 0
