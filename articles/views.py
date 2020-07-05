@@ -26,7 +26,8 @@ class IndexView(View):
         form = ArticleForm(request.POST)
 
         if not form.is_valid() or\
-                not processing_checkbox(form, request.user):
+                not processing_checkbox(form, request.user) or \
+                not processing_avatar(form):
             return JsonResponse(
                 {"code": "400",
                  "message": "Проверьте правильно ли заполнены поля"})
@@ -126,7 +127,8 @@ class ArticleView(View):
         form = ArticleForm(request.POST, instance=article)
 
         if not form.is_valid() or \
-                not processing_checkbox(form, request.user):
+                not processing_checkbox(form, request.user) or \
+                not processing_avatar(form):
             return JsonResponse(
                 {"code": "400",
                  "message": "Проверьте правильно ли заполнены поля"})
@@ -212,14 +214,11 @@ def processing_social(form, user):
 
 
 def processing_checkbox(form, user):
-    print("social")
     if not processing_social(form, user):
         return False
-    print("messengers")
+
     if not processing_messengers(form):
         return False
-
-    print("data")
 
     return (form.cleaned_data["phone"] or
             form.cleaned_data["email"] or
@@ -227,3 +226,7 @@ def processing_checkbox(form, user):
             form.cleaned_data["facebook"] or
             form.cleaned_data["twitter"] or
             form.cleaned_data["odnoklassniki"])
+
+
+def processing_avatar(form):
+    return form.cleaned_data["images"].count() > form.cleaned_data["avatar"]

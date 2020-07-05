@@ -1,5 +1,4 @@
 $(function () {
-    let imagesCount = 0;
     let imagesInput = $("select#id_images").val();
     if (imagesInput) {
         setTimeout(function () {
@@ -95,35 +94,8 @@ $(function () {
             }
             )
     });
-    $(".image-block .fa-times").on("click",
-        function (event) {
-        event.preventDefault();
-        let delId = parseInt($(this).parent().data("slick-slide"));
-        $(".images-slick").slick('slickRemove',
-            $(this).parent().data("slick-slide"));
-        $.each($(".image-block .fa-times"),
-            function (index, value) {
-            let slideId = parseInt($(value).parent().data("slick-slide"));
-
-            if (delId < slideId) {
-                $(value).parent().data("slick-slide", slideId - 1);
-                if ($(value).siblings(".fa-star")
-                    .hasClass("avatar")) {
-                    $(".article-form #id_avatar").val(
-                        slideId - 1
-                    );
-                }
-            }
-        });
-        setAvatar();
-    })
-    $(".image-block .fa-star").on("click",
-        function (event) {
-        event.preventDefault();
-        let slideId = $(this).parent().data("slick-slide");
-        $(".article-form #id_avatar").val(slideId);
-        setAvatar();
-    });
+    $(".image-block .fa-times").on("click", closeClick());
+    $(".image-block .fa-star").on("click", starClick);
     $(".image-block .fa-plus").on("click",
         function (event) {
         $("form.image-form #id_image").click();
@@ -188,18 +160,6 @@ $(function () {
         function (event) {
         $(".classroom").slick("slickRemove", $(this).data("slick-index"))
     });
-    function addImage(imgId) {
-        let imageSlide = `<div class="image-wrap">
-        <div class="image">
-        <div class="image-block" data-slick-slide="${imagesCount}">
-        <img src="/image/${imgId}" alt="" class="my-image">
-        <i class="fas fa-times"></i>
-        <i class="fas fa-star avatar"></i>
-        </div></div></div>`;
-        $(".images-slick").slick('slickAdd', imageSlide, imagesCount, true);
-        imagesCount++;
-        setAvatar();
-    }
 })
 function checkFree() {
     let input = $("input#id_price");
@@ -273,16 +233,35 @@ function setMessage(text, color) {
     $(".message").fadeIn();
     $('html').animate({ "scrollTop": top }, "1100");
 }
+function addImage(imgId) {
+    let imageSlider = $(".images-slick");
+    let imageId = imageSlider.slick("getSlick").slideCount - 1;
+    let imageSlide = `<div class="image-wrap">
+        <div class="image">
+        <div class="image-block">
+        <img src="/image/${imgId}" alt="" class="my-image">
+        <i class="fas fa-times"></i>
+        <i class="fas fa-star avatar"></i>
+        </div></div></div>`;
+    imageSlider.slick('slickAdd', imageSlide,
+        imageId, true);
+    $(`.image-wrap[data-slick-index="${imageId}"] .fa-star`).on(
+        "click", starClick);
+    $(`.image-wrap[data-slick-index="${imageId}"] .fa-times`).on(
+        "click", closeClick);
+    setAvatar();
+    }
 function setAvatar() {
-    let avatar = parseInt($(".article-form #id_avatar").val());
+    let avatarField = $(".article-form #id_avatar");
+    let avatar = parseInt(avatarField.val());
     let wasAvatar = false;
 
     if (!avatar) {
         avatar = 0
-        $(".article-form #id_avatar").val(avatar);
+        avatarField.val(avatar);
     }
     $.each($(".image-block"), function (index, value) {
-       if ($(value).data("slick-slide") === avatar) {
+       if ($(value).parent().parent().data("slick-index") === avatar) {
            $(value).children(".fa-star").addClass("avatar");
            wasAvatar = true;
        }
@@ -291,7 +270,7 @@ function setAvatar() {
     });
 
     if (!wasAvatar) {
-        $(".article-form #id_avatar").val("0");
+        avatarField.val("0");
         if ($(".image-block").length > 2) setAvatar();
     }
 }
@@ -355,4 +334,20 @@ function tagsField() {
             `<option value="${$(value).data("tag-id")}"></option>`)
     });
     $("select#id_tags option").prop('selected', true);
+}
+function starClick(event) {
+    event.preventDefault();
+    console.log("star")
+    let slideId = $(this).parent().parent().parent()
+        .data("slick-index");
+    console.log(slideId);
+    $(".article-form #id_avatar").val(slideId);
+    setAvatar();
+}
+function closeClick(event) {
+    event.preventDefault();
+    let delId = parseInt(
+        $(this).parent().parent().parent().data("slick-index"));
+    $(".images-slick").slick('slickRemove', delId);
+    setAvatar();
 }
