@@ -63,13 +63,21 @@ class SearchView(View):
             return JsonResponse(
                 {"code": "400",
                  "message": "Проверьте правильно ли заполнены поля"})
-        print(form.cleaned_data["tags"])
+
+        subject_tags = list(form.cleaned_data["tags"].filter(group="subject"))
+        classroom_tags = list(form.cleaned_data["tags"].filter(group="classroom"))
         first_article = form.cleaned_data["firstArticle"]
 
         if first_article == -1:
             return JsonResponse({"code": "200", "articles": [], "nextArticle": -1})
 
-        articles = Article.objects.filter(tittle__icontains=form.cleaned_data["search"]).order_by("-date")
+        articles = Article.objects.filter(tittle__icontains=form.cleaned_data["search"])
+        if subject_tags:
+            articles = articles.filter(tags__in=subject_tags)
+        if classroom_tags:
+            articles = articles.filter(tags__in=classroom_tags)
+
+        articles = articles.distinct().order_by("-date")
 
         if articles.count() > count + first_article:  # Записей больше чем нужно
             articles = articles[first_article:count + first_article]
