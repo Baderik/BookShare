@@ -17,12 +17,10 @@ $(function () {$(".search-form #id_firstArticle").val(0);
         adaptiveHeight: true
     });
     $(".search-form").on("submit", function (event) {
-        console.log("submit");
         tagsField();
         formRequest(event,
             function (response) {
                 if (response.code === "200") {
-                    console.log(response);
                     $(".article").remove();
                     addNewArticles(response);
                 }
@@ -115,7 +113,6 @@ function addNewArticles(response) {
         $(".articles .button-out").before(articleHtml)
     });
     $(".link").on("click", link)
-    console.log("added")
 
     if (nextArticle === -1) $(".articles-button").hide();
     else $(".articles-button").show();

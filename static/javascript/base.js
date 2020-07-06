@@ -107,8 +107,6 @@ function setWidthHeightImg(image=".image-wh") {
 
         let width  = parseInt($(value).width());
         let height = parseInt($(value).height());
-        console.log(value)
-        console.log(width, height)
         let maxWidth = calcMaxSize(
             $(value).data("image-wh-width"), parent.width());
         let maxHeight = calcMaxSize(

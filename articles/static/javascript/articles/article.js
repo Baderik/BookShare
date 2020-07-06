@@ -59,7 +59,6 @@ let question = function (event) {};
 let questionEvent = null;
 function popupClose(event) {
     if (answer) {
-        console.log(questionEvent)
         question(questionEvent);
     }
     $(".popup").fadeOut();

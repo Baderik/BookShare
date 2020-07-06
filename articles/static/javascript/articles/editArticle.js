@@ -337,10 +337,8 @@ function tagsField() {
 }
 function starClick(event) {
     event.preventDefault();
-    console.log("star")
     let slideId = $(this).parent().parent().parent()
         .data("slick-index");
-    console.log(slideId);
     $(".article-form #id_avatar").val(slideId);
     setAvatar();
 }

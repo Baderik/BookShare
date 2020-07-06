@@ -11,11 +11,9 @@ $(function () {
                 if (response.code === "303") {
                     location.href = response.location;
                 }
-                console.log("ajax success")
             },
             function (response) {
                 setMessage("Произошла ошибка", "red")
-                console.log("ajax success")
             }
             )
     });
