@@ -143,10 +143,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Email
-
-DEFAULT_FROM_EMAIL = 'bookshophec@gmail.com'
+DEFAULT_FROM_EMAIL = 'booksharehec@gmail.com'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "bookshophec@gmail.com"
-EMAIL_HOST_PASSWORD = "FknNxMz3LWBTT6U5Zokw*"
+EMAIL_HOST_USER = "booksharehec@gmail.com"
+EMAIL_HOST_PASSWORD = "ztpCrADLAvxes4W6ZtBA"
 EMAIL_USE_TLS = True
