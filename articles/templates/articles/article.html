@@ -37,7 +37,7 @@
             </label>
             <div class="row subject offset-1 col-10">
             {% for subject in subjects %}
-                <span class="tag" title="Найти записи с этим тегом"
+                <span class="tag"
                 data-tag-id="{{ subject.id }}">
                 {{ subject.value }}
                 </span>
@@ -206,7 +206,17 @@
             </div>
         </div>
     </section>
+    {% csrf_token %}
 {% endblock %}
 {% block Footer %}
     <script src="{% static 'javascript/articles/article.js' %}"></script>
+{% endblock %}
+{% block Popup %}
+    <span class="question">Вы уверены что хотите сделать это?</span>
+    <div class="button-out button-right">
+        <button class="my-button no">Нет, конечно</button>
+    </div>
+    <div class="button-out button-left">
+        <button class="my-button yes">Да, уверен</button>
+    </div>
 {% endblock %}

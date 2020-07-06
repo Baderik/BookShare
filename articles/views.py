@@ -141,6 +141,24 @@ class ArticleView(View):
                              "message": "Вам туда",
                              "location": f"../../{new_post.id}/"})
 
+    @staticmethod
+    def delete(request, aid):
+        article = get_object_or_404(Article, pk=aid)
+
+        if not request.user.is_authenticated or \
+                article.author.id != request.user.id:
+            return JsonResponse({
+                "code": "403",
+                "message": "Ну нет, не надо лезть"
+            })
+
+        article.delete()
+
+        return JsonResponse({
+            "code": "303",
+            "message": "",
+            "location": "/"})
+
 
 class AddView(View):
     @staticmethod
