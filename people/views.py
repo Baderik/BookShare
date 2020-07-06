@@ -1,12 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from django.http import JsonResponse
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import get_template
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.views import View
 
 from re import match
 
-from people.forms import SettingsForm
+from authentication.tokens import account_activation_token
+import BookShare.settings as settings
 from imageBase.forms import UploadImageForm
+from people.forms import SettingsForm
 
 
 class IndexView(View):
@@ -51,8 +57,25 @@ class ProfileView(View):
 
             request.user.email = form.cleaned_data["email"]
             request.user.is_active_email = False
-            # Отправить письмо с подтверждением почты
-            message.append("Ваша почта изменён")
+            token = account_activation_token.make_token(request.user)
+            uid = urlsafe_base64_encode(force_bytes(request.user.pk))
+            url = f"https://{settings.ALLOWED_HOSTS[-1]}" \
+                  f"/auth/activation/{uid}/{token}"
+            send_mail(
+                subject="Активация аккаунта | Book.Share",
+                message="",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[request.user.email],
+                html_message=get_template(
+                    "letterActivation.html").render(
+                    {"password": "Пароль остался старый",
+                     "url": url,
+                     "host": settings.ALLOWED_HOSTS[-1],
+                     "logo": "static/img/logo.png"})
+            )
+
+            print(f"Activate url: {url}")
+            message.append("Ваша почта изменена")
 
         if form.cleaned_data["password"]:
             if form.cleaned_data["password"] \

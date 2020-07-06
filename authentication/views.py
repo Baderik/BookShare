@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -48,12 +47,10 @@ class IndexView(View):
 
         else:
             user = User(email=email)
-            # user.token = token
             password = User.objects.make_random_password()
             user.set_password(password)
             user.save()
             token = account_activation_token.make_token(user)
-
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             url = f"https://{settings.ALLOWED_HOSTS[-1]}" \
                   f"/auth/activation/{uid}/{token}"
