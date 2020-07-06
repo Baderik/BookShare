@@ -39,7 +39,7 @@ function addNotification(txt){
 }
 // Link
 function link(event) {
-    window.location.href = $(this).data("link-href");
+    window.location.href = $(event.currentTarget).data("link-href");
 }
 // FormSendler
 function formRequest(event, success=function (response) {},

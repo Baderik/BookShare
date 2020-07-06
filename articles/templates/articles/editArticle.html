@@ -212,39 +212,14 @@
         <div class="button-out">
             <button class="my-button">Сохранить</button>
         </div>
-    {{ form.images }}
-    {{ form.tags }}
-    {{ form.avatar }}
+        {{ form.images }}
+        {{ form.tags }}
+        {{ form.avatar }}
     </form>
     <form action="/image/" method="POST" class="image-form">
         {% csrf_token %}
         {{ imageForm.image }}
     </form>
-    <div class="popup">
-        <div class="row">
-            <div class="offset-1 col-10 popup-block">
-                <div class="subjects">
-                {% for subject in subjects %}
-                    <span class="tag" title="Добавить тег к записи"
-                    data-tag-id="{{ subject.id }}">
-                    {{ subject.value }}
-                    </span>
-                {% endfor %}
-                </div>
-                <div class="classrooms">
-                {% for classroom in classrooms %}
-                    <span class="tag" title="Добавить тег к записи"
-                    data-tag-id="{{ classroom.id }}">
-                    {{ classroom.value }}
-                    </span>
-                {% endfor %}
-                </div>
-                <div class="popup-close">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}
 {% block Footer %}
     <script>
@@ -255,4 +230,22 @@
         let odnoklassniki = false;
     </script>
     <script src="{% static 'javascript/articles/editArticle.js' %}"></script>
+{% endblock %}
+{% block Popup %}
+    <div class="subjects">
+                {% for subject in subjects %}
+                    <span class="tag" title="Добавить тег к записи"
+                    data-tag-id="{{ subject.id }}">
+                    {{ subject.value }}
+                    </span>
+                {% endfor %}
+                </div>
+    <div class="classrooms">
+    {% for classroom in classrooms %}
+        <span class="tag" title="Добавить тег к записи"
+        data-tag-id="{{ classroom.id }}">
+        {{ classroom.value }}
+        </span>
+    {% endfor %}
+    </div>
 {% endblock %}

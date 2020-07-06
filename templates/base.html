@@ -60,5 +60,15 @@
     <script src="https://kit.fontawesome.com/3b144c854e.js" crossorigin="anonymous"></script>
     <script src="{% static 'javascript/base.js' %}"></script>
 {% block Footer %}{% endblock %}
+    <div class="popup">
+        <div class="row">
+            <div class="offset-1 col-10 popup-block">
+            {% block Popup %}{% endblock %}
+                <div class="popup-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

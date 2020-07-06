@@ -84,9 +84,9 @@
                     {% if not is_owner %}
                         <i class="far fa-comments" title="Написать отзыв"></i>
                     {% else %}
-                        <i class="fas fa-sign-out-alt link" title="Выйти"
+                        <i class="fas fa-sign-out-alt logout" title="Выйти"
                            data-link-href="/auth/logout"></i>
-                        <i class="far fa-trash-alt" title="Удалить аккаунт"></i>
+                        <i class="far fa-trash-alt delete" title="Удалить аккаунт"></i>
                     {% endif %}
                     </div>
                 </div>
@@ -187,7 +187,17 @@
             </div>
         </div>
     </section>
+    {% csrf_token %}
 {% endblock %}
 {% block Footer %}
     <script src="{% static 'javascript/people/profile.js' %}"></script>
+{% endblock %}
+{% block Popup %}
+    <span class="question">Вы уверены что хотите сделать это?</span>
+    <div class="button-out button-right">
+        <button class="my-button no">Нет, конечно</button>
+    </div>
+    <div class="button-out button-left">
+        <button class="my-button yes">Да, уверен</button>
+    </div>
 {% endblock %}

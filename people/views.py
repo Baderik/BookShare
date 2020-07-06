@@ -9,6 +9,7 @@ from django.views import View
 
 from re import match
 
+from authentication.models import User
 from authentication.tokens import account_activation_token
 import BookShare.settings as settings
 from imageBase.forms import UploadImageForm
@@ -34,7 +35,7 @@ class ProfileView(View):
         })
 
     @staticmethod
-    def post(request, uid, *args, **kwargs):
+    def post(request, uid):
         if not request.user.is_authenticated or uid != request.user.pk:
             return JsonResponse({"code": "403", "message": "Вам туда нельзя"})
 
@@ -96,6 +97,22 @@ class ProfileView(View):
                              "message": "\n".join(message),
                              "email": request.user.is_active_email})
 
+    @staticmethod
+    def delete(request, uid):
+        if not request.user.is_authenticated or uid != request.user.id:
+            return JsonResponse({
+                "code": "403",
+                "message": "Ну нет, не надо лезть"
+            })
+
+        user = get_object_or_404(User, pk=uid)
+        user.delete()
+
+        return JsonResponse({
+            "code": "303",
+            "message": "",
+            "location": "/auth/logout"})
+
 
 class SettingsView(View):
     @staticmethod
@@ -117,6 +134,9 @@ class SettingsView(View):
 
 
 def check_phone(phone):
+    if phone is None:
+        return True
+
     template_phone = "\+7 \(\d{3}\) \d{3}(-\d{2}){2}"
 
     return len(phone) == 18 and match(template_phone, phone)

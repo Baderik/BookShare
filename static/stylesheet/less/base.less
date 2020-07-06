@@ -248,7 +248,32 @@ footer {
     }
   }
 }
-
+// Popup
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(@dark, 50%);
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  &-block {
+    border-radius: 1rem;
+    margin-top: 6rem;
+    background-color: @dark-light;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: relative;
+  }
+  &-close {
+    position: absolute;
+    top: 0rem;
+    right: 0.5rem;
+    font-size: 2rem;
+  }
+}
 form input:invalid:not(:placeholder-shown) {
   box-shadow: 0 0 0.5rem red;
 }

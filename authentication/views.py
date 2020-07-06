@@ -104,7 +104,7 @@ class LoginView(View):
                 if user.is_active_email:
                     login(request, user)
 
-                    url = "/people/settings/"
+                    url = "/user/settings/"
 
                     if user.is_active:
                         url = "/"
