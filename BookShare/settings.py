@@ -25,7 +25,7 @@ SECRET_KEY = 'gly0hlv-do%hez_)o1e9n=#uq3p5$c1sr4xg85^fypftq&nml$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "bookshare.pythonanywhere.com"]
 
 
 # Application definition
@@ -127,6 +127,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'index/static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Media files (img)
 
