@@ -25,7 +25,7 @@ SECRET_KEY = 'gly0hlv-do%hez_)o1e9n=#uq3p5$c1sr4xg85^fypftq&nml$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -141,3 +141,12 @@ AUTHENTICATION_BACKENDS = (
     'authentication.backends.MyLoginBackend',
     'django.contrib.auth.backends.ModelBackend'
 )
+
+# Email
+
+DEFAULT_FROM_EMAIL = 'bookshophec@gmail.com'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "bookshophec@gmail.com"
+EMAIL_HOST_PASSWORD = "FknNxMz3LWBTT6U5Zokw*"
+EMAIL_USE_TLS = True
