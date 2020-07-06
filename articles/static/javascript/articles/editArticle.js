@@ -94,7 +94,7 @@ $(function () {
             }
             )
     });
-    $(".image-block .fa-times").on("click", closeClick());
+    $(".image-block .fa-times").on("click", closeClick);
     $(".image-block .fa-star").on("click", starClick);
     $(".image-block .fa-plus").on("click",
         function (event) {

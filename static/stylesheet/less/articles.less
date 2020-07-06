@@ -1,5 +1,23 @@
 @import (reference) "base.less";
 
+// Animation
+@keyframes nothing {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @font;
+  }
+}
+@keyframes nothing-out {
+  from {
+    color: @font;
+  }
+  to {
+    color: @blur;
+  }
+}
+
 // Articles
 .articles {
   margin-top: 5rem;
@@ -70,6 +88,22 @@
   font-size: 1.5rem;
   width: 100%;
   justify-content: space-between !important;
+}
+
+.nothing {
+  &-text {
+    .bold();
+    font-size: 5rem;
+    text-align: center;
+    display: block;
+    width: 100%;
+    &:hover {
+      animation: nothing 1s forwards;
+    }
+    &:not(:hover) {
+      animation: nothing-out 1s forwards;
+    }
+  }
 }
 // Extra large
 @media (min-width: 1200px) {

@@ -2,24 +2,6 @@
 @import "../../../../../static/stylesheet/less/base.less";
 @import "../../../../../static/stylesheet/less/articles.less";
 
-// Animation
-@keyframes nothing {
-  from {
-    color: @blur;
-  }
-  to {
-    color: @font;
-  }
-}
-@keyframes nothing-out {
-  from {
-    color: @font;
-  }
-  to {
-    color: @blur;
-  }
-}
-
 body {
   background: @dark url("../../../img/articles/background.png") top center no-repeat;
   background-size: auto 60rem;
@@ -178,22 +160,6 @@ main {
     color: @font;
     writing-mode: vertical-lr;
     margin: 0;
-  }
-}
-.nothing {
-  display: none;
-  &-text {
-    .bold();
-    font-size: 5rem;
-    text-align: center;
-    display: block;
-    width: 100%;
-    &:hover {
-      animation: nothing 1s forwards;
-    }
-    &:not(:hover) {
-      animation: nothing-out 1s forwards;
-    }
   }
 }
 // Extra large

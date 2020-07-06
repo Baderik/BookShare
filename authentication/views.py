@@ -163,7 +163,6 @@ class ActivationView(View):
             decode_uid = force_text(urlsafe_base64_decode(uid))
 
         except (TypeError, ValueError, OverflowError):
-            print("decode")
             return redirect('/')
 
         user = get_object_or_404(User, pk=decode_uid)

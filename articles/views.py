@@ -145,6 +145,12 @@ class ArticleView(View):
 class AddView(View):
     @staticmethod
     def get(request):
+        if not request.user.is_authenticated:
+            return redirect('/')
+
+        if not request.user.is_active:
+            return redirect("/user/settings")
+
         return render(request, "articles/editArticle.html",
                       {
                           "user": request.user,
