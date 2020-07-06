@@ -1,5 +1,6 @@
 $(function () {
     $("form").on("submit", function(event) {
+        setMessage("Выполняется");
         formRequest(event,
             function (response) {
                 let color = ""
@@ -10,9 +11,11 @@ $(function () {
                 if (response.code === "303") {
                     location.href = response.location;
                 }
+                console.log("ajax success")
             },
             function (response) {
                 setMessage("Произошла ошибка", "red")
+                console.log("ajax success")
             }
             )
     });
