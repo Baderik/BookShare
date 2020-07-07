@@ -2,6 +2,7 @@
 
 // Main
 .tag {
+  cursor: default;
   &:not(:hover){
     animation: interface-out-color 0.5s forwards;
     i {
@@ -122,5 +123,34 @@
     .date {
       cursor: text;
     }
+  }
+}
+// Popup
+.popup {
+  .question {
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    display: inline-block;
+    margin-bottom: 3rem;
+  }
+  .button-out {
+    width: calc(50% - 1.5rem - 1rem);
+    display: inline-block;
+    &.button-right {
+      width: calc(50% - 1.5rem - 1rem);
+      text-align: right;
+    }
+    &.button-left {
+      width: calc(50% - 1.5rem - 3rem);
+      margin-left: 6rem;
+      text-align: left;
+    }
+  }
+  .button-left, .button-right {
+    margin-top: 0;
+  }
+  .popup-close {
+    top: 0;
   }
 }

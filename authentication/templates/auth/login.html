@@ -21,9 +21,13 @@
                 <span class="title">
                     Вход
                 </span>
-                    <form action="">
-                        <input type="text" placeholder="Почта">
-                        <input type="text" placeholder="Пароль">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.email }}
+                        {{ form.password }}
+                        <span class="blur">
+                            <span class="message"></span>
+                        </span>
                         <button class="my-button">Войти</button>
                     </form>
                     <div class="social">
@@ -38,4 +42,7 @@
             </div>
         </div>
     </main>
+{% endblock %}
+{% block Footer %}
+    <script src="{% static 'javascript/auth/index.js' %}"></script>
 {% endblock %}

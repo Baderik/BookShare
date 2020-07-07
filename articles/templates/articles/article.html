@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block Head %}
-    <link rel="stylesheet" href="{% static 'stylesheet/articles/css/article.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'stylesheet/articles/css/article.min.css' %}">
 {% endblock %}
 {% block Title %}Article{% endblock %}
 {% block Content %}
@@ -14,35 +15,41 @@
             </div>
             <div class="row">
                 <div class="menu offset-1 col-10">
-                    <i class="fas fa-pen link" title="Изменить запись" data-link-href="/articles/edit/"></i>
-                    <i class="fas fa-hands-helping" title="Заключить сделку"></i>
-                    <i class="far fa-comments" title="Написать отзыв"></i>
-                    <i class="far fa-trash-alt" title="Удалить запись"></i>
+                    {% if is_owner %}
+                        <i class="fas fa-pen link" title="Изменить запись"
+                           data-link-href="/articles/edit/{{ article.id }}"></i>
+                    {% endif %}
+                    <i class="fas fa-hands-helping"
+                       title="Заключить сделку"></i>
+                    {% if not is_owner %}
+                        <i class="far fa-comments" title="Написать отзыв"></i>
+                    {% else %}
+                        <i class="far fa-trash-alt" title="Удалить запись"></i>
+                    {% endif %}
                 </div>
             </div>
             <label class="row title">
-                <span class="offset-1 col-10 offset-lg-1 col-lg-2">Заголовок:</span>
-                <input type="text" class="offset-2 col-9 offset-lg-0 col-lg-8">
+                <span class="offset-1 col-10 offset-lg-1 col-lg-2">
+                    Заголовок:</span>
+                <input type="text" class="offset-1 col-10 offset-lg-0 col-lg-8"
+                value="{{ article.tittle }}"
+                readonly>
             </label>
             <div class="row subject offset-1 col-10">
-                <span class="tag">Русский язык</span>
-                <span class="tag">Английский язык</span>
-                <span class="tag">Математика</span>
-                <span class="tag">Химия</span>
-                <span class="tag">Биология</span>
+            {% for subject in subjects %}
+                <span class="tag"
+                data-tag-id="{{ subject.id }}">
+                {{ subject.value }}
+                </span>
+            {% endfor %}
             </div>
             <div class="row classroom offset-1 col-10">
-                <span class="tag">1 класс</span>
-                <span class="tag">2 класс</span>
-                <span class="tag">3 класс</span>
-                <span class="tag">4 класс</span>
-                <span class="tag">5 класс</span>
-                <span class="tag">6 класс</span>
-                <span class="tag">7 класс</span>
-                <span class="tag">8 класс</span>
-                <span class="tag">9 класс</span>
-                <span class="tag">10 класс</span>
-                <span class="tag">11 класс</span>
+            {% for classroom in classrooms %}
+                <span class="tag" title="Найти записи с этим тегом"
+                data-tag-id="{{ classroom.id }}">
+                {{ classroom.value }}
+                </span>
+            {% endfor %}
             </div>
         </div>
     </main>
@@ -55,34 +62,16 @@
         </div>
         <div class="container">
             <div class="row offset-1 col-10 images-slick">
+            {% for image in article.images.all %}
                 <div class="image-wrap">
                     <div class="image">
                         <div class="image-block">
-                            <img src="{% static 'img/articles/book1.png' %}" alt="" class="my-image">
+                            <img src="/image/{{ image.id }}"
+                                 alt="" class="my-image">
                         </div>
                     </div>
                 </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book2.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/book3.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
-                <div class="image-wrap">
-                    <div class="image">
-                        <div class="image-block">
-                            <img src="{% static 'img/articles/article.png' %}" alt="" class="my-image">
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
             </div>
         </div>
     </section>
@@ -96,18 +85,21 @@
         <div class="container">
             <div class="row">
                 <label class="col-12 offset-lg-1 col-lg-10">
-                    <textarea></textarea>
+                    <textarea readonly>{{ article.description }}</textarea>
                 </label>
             </div>
             <div class="row">
                 <div class="col-12 offset-lg-1 col-lg-5 cost">
-                    <label class="name" for="costid">Цена</label>
-                    <input type="text" id="costid">
+                    <label class="name" for="id_cost">Цена</label>
+                    <input type="text" id="id_cost"
+                           value="{{ article.price }}"
+                           readonly>
                     <span class="currency">руб.</span>
                 </div>
                 <label class="col-12 offset-lg-1 col-lg-5 condition">
                     <span class="name">Состояние</span>
-                    <input type="text">
+                    <input type="text" value="{{ article.condition }}"
+                           readonly>
                 </label>
             </div>
         </div>
@@ -123,48 +115,75 @@
             <div class="row">
                 <div class="offset-1 col-10">
                     <div class="row base">
-                        <div class="col-6 col-lg-3 phone icon">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Телефон</span>
-                        </div>
-                        <div class="col-6 col-lg-3 email icon">
-                            <i class="fas fa-at"></i>
-                            <span>E-mail</span>
-                        </div>
+                        {% if article.phone %}
+                            <div class="col-12 col-lg-6 phone icon copy"
+                                 data-copy-el=".phone span">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>{{ article.author.profile.phone }}</span>
+                            </div>
+                        {% endif %}
+                        {% if article.email  %}
+                            <div class="col-12 col-lg-6 email icon copy"
+                                 data-copy-el=".email span">
+                                <i class="fas fa-at"></i>
+                                <span>{{ article.author.email }}</span>
+                            </div>
+                        {% endif %}
                     </div>
+                {% if article.vk or article.facebook or article.twitter or article.odnoklassniki %}
                     <span class="blur">Найдите меня в ...</span>
+                {% endif %}
                     <div class="row">
+                    {% if article.vk %}
                         <div class="col-6 col-lg-3 vk icon">
                             <i class="fab fa-vk"></i>
                             <a>Вконтакте</a>
                         </div>
+                    {% endif %}
+                    {% if article.facebook %}
                         <div class="col-6 col-lg-3 facebook icon">
                             <i class="fa fa-facebook"></i>
                             <a>Facebook</a>
                         </div>
+                    {% endif %}
+                    {% if article.twitter %}
                         <div class="col-6 col-lg-3 twitter icon">
                             <i class="fab fa-twitter"></i>
                             <a>Twitter</a>
                         </div>
+                    {% endif %}
+                    {% if article.odnoklassniki %}
                         <div class="col-7 col-lg-3 odnoklassniki icon">
                             <i class="fab fa-odnoklassniki"></i>
                             <a>Одноклассники</a>
                         </div>
+                    {% endif %}
                     </div>
+                {% if article.telegram or article.whatsapp or article.viber %}
                     <span class="blur">Или пишите в ...</span>
+                {% endif %}
                     <div class="row">
-                        <div class="col-6 col-lg-3 telegram icon">
+                    {% if article.telegram %}
+                        <div class="col-6 col-lg-3 telegram icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-telegram-plane"></i>
                             <span>Telegram</span>
                         </div>
-                        <div class="col-6 col-lg-3 whatsapp icon">
+                    {% endif %}
+                    {% if article.whatsapp %}
+                        <div class="col-6 col-lg-3 whatsapp icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp</span>
                         </div>
-                        <div class="col-6 col-lg-3 viber icon">
+                    {% endif %}
+                    {% if article.viber %}
+                        <div class="col-6 col-lg-3 viber icon messenger copy"
+                        data-copy-el=".phone span">
                             <i class="fab fa-viber"></i>
                             <span>Viber</span>
                         </div>
+                    {% endif %}
                     </div>
                     <span class="blur">
                         Самое главное
@@ -172,18 +191,32 @@
                     <div class="row">
                         <div class="col-12 col-lg-6 name icon">
                             <i class="far fa-address-card"></i>
-                            <a href="">Фамилия Имя Отчество</a>
+                            <a href="/user/{{ article.author.id }}/">
+                                {{ article.author.profile.surname }}
+                                {{ article.author.profile.name }}
+                                {{ article.author.profile.middle_name }}
+                            </a>
                         </div>
                         <div class="col-12 col-lg-6 date icon">
                             <i class="far fa-clock"></i>
-                            <span>1 января 2020 16:00</span>
+                            <span>{{ article.date }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    {% csrf_token %}
 {% endblock %}
 {% block Footer %}
     <script src="{% static 'javascript/articles/article.js' %}"></script>
+{% endblock %}
+{% block Popup %}
+    <span class="question">Вы уверены что хотите сделать это?</span>
+    <div class="button-out button-right">
+        <button class="my-button no">Нет, конечно</button>
+    </div>
+    <div class="button-out button-left">
+        <button class="my-button yes">Да, уверен</button>
+    </div>
 {% endblock %}

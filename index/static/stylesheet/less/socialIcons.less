@@ -1,0 +1,432 @@
+@import (reference) "base.less";
+
+// Colors
+@vk: #597DA3;
+@facebook: #3B5998;
+@google: #34A853;
+@twitter: #03A9F4;
+@yandex: #D7143A;
+@odnoklassniki: #ED812B;
+@telegram: #0088CC;
+@whatsapp: #25D366;
+@viber: #665CAC;
+@phone: #177734;
+@at: #FC2C38;
+@danger: #F44336;
+// Animation
+// Social
+@keyframes icon-vk-out {
+  from {
+    color: @vk;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-vk {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @vk;
+  }
+}
+@keyframes icon-facebook-out {
+  from {
+    color: @facebook;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-facebook {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @facebook;
+  }
+}
+@keyframes icon-google-out {
+  from {
+    color: @google;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-google {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @google;
+  }
+}
+@keyframes icon-twitter-out {
+  from {
+    color: @twitter;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-twitter {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @twitter;
+  }
+}
+@keyframes icon-yandex-out {
+  from {
+    color: @yandex;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-yandex {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @yandex;
+  }
+}
+@keyframes icon-odnoklassniki-out {
+  from {
+    color: @odnoklassniki ;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-odnoklassniki {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @odnoklassniki;
+  }
+}
+// Messenger
+@keyframes icon-telegram {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @telegram;
+  }
+}
+@keyframes icon-telegram-out {
+  from {
+    color: @telegram;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-whatsapp {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @whatsapp;
+  }
+}
+@keyframes icon-whatsapp-out {
+  from {
+    color: @whatsapp;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-viber {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @viber;
+  }
+}
+@keyframes icon-viber-out {
+  from {
+    color: @viber;
+  }
+  to {
+    color: @blur;
+  }
+}
+// Service
+@keyframes icon-plus-out {
+  from {
+    color: @interface ;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes icon-plus {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @interface;
+  }
+}
+@keyframes icon-phone-out {
+  from {
+    color: @phone;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-phone {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @phone;
+  }
+}
+@keyframes icon-at-out {
+  from {
+    color: @at;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-at {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @at;
+  }
+}
+@keyframes trash-out {
+  from {
+    color: @danger;
+  }
+  to {
+    color: @blur
+  }
+}
+@keyframes trash {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @danger;
+  }
+}
+@keyframes icon-message {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @phone;
+  }
+}
+@keyframes icon-message-out {
+  from {
+    color: @phone;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-case {
+  from {
+    color: @blur;
+  }
+  to {
+    color: @vk;
+  }
+}
+@keyframes icon-case-out {
+  from {
+    color: @vk;
+  }
+  to {
+    color: @blur;
+  }
+}
+@keyframes icon-close-out {
+  from {
+    color: @danger;
+  }
+  to {
+    color: @font
+  }
+}
+@keyframes icon-close {
+  from {
+    color: @font;
+  }
+  to {
+    color: @danger;
+  }
+}
+@keyframes icon-star-out {
+  from {
+    color: @interface;
+  }
+  to {
+    color: @font
+  }
+}
+@keyframes icon-star {
+  from {
+    color: @font;
+  }
+  to {
+    color: @interface;
+  }
+}
+.social, .icons {
+  display: flex;
+  justify-content: space-around;
+  i {
+    color: @blur;
+    line-height: 3rem;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+}
+.fa-vk {
+  &.active {
+    color: @vk;
+  }
+  &:not(:hover){
+    animation: icon-vk-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-vk 0.5s forwards;
+  }
+}
+.fa-facebook {
+  &.active {
+    color: @facebook;
+  }
+  &:not(:hover){
+    animation: icon-facebook-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-facebook 0.5s forwards;
+  }
+}
+.fa-google {
+  &.active {
+    color: @google;
+  }
+  &:not(:hover){
+    animation: icon-google-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-google 0.5s forwards;
+  }
+}
+.fa-twitter {
+  &.active {
+    color: @twitter;
+  }
+  &:not(:hover){
+    animation: icon-twitter-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-twitter 0.5s forwards;
+  }
+}
+.fa-yandex {
+  &.active {
+    color: @yandex;
+  }
+  &:not(:hover){
+    animation: icon-yandex-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-yandex 0.5s forwards;
+  }
+}
+.fa-odnoklassniki {
+  &.active {
+    color: @odnoklassniki;
+  }
+  &:not(:hover){
+    animation: icon-odnoklassniki-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-odnoklassniki 0.5s forwards;
+  }
+}
+.fa-plus {
+  margin: 0;
+  &:not(:hover){
+    animation: icon-plus-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-plus 0.5s forwards;
+  }
+}
+.fa-trash-alt, .fa-sign-out-alt {
+  &:not(:hover) {
+    animation: trash-out 0.5s forwards;
+  }
+  &:hover {
+    animation: trash 0.5s forwards;
+  }
+}
+.fa-cog, .fa-pen {
+  &:not(:hover) {
+    animation: interface-out-blur 0.5s forwards;
+  }
+  &:hover {
+    animation: interface-blur 0.5s forwards;
+  }
+}
+.fa-comments {
+  &:not(:hover) {
+    animation: icon-message-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-message 0.5s forwards;
+  }
+}
+.fa-briefcase, .fa-hands-helping {
+  &:not(:hover) {
+    animation: icon-case-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-case 0.5s forwards;
+  }
+}
+.fa-times {
+  cursor: pointer;
+  &.active {
+    color: @danger;
+  }
+  &:not(:hover){
+    animation: icon-close-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-close 0.5s forwards;
+  }
+}
+.fa-times {
+  cursor: pointer;
+  &.active {
+    color: @danger;
+  }
+  &:not(:hover){
+    animation: icon-close-out 0.5s forwards;
+  }
+  &:hover {
+    animation: icon-close 0.5s forwards;
+  }
+}

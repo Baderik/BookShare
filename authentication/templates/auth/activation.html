@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Head %}
+    <link rel="stylesheet" href="{% static 'stylesheet/auth/css/auth.min.css' %}">
+{% endblock %}
+{% block Title %}Активация аккаунта{% endblock %}
+{% block Content %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-5 pre-auth">
+                    <span>Осталось совсем немного</span>
+                    <div class="icon">
+                        <img src="{% static 'img/auth/book.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-1 line">
+                    <hr>
+                </div>
+                <div class="col-12 col-md-7 col-lg-6 auth">
+                <span class="title">
+                    Активация аккаунта
+                </span>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form_in.email }}
+                        {{ form_in.password }}
+                        <span class="blur">
+                            <span class="message"></span>
+                        </span>
+                        <button class="my-button">Активировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block Footer %}
+    <script src="{% static 'javascript/auth/index.js' %}"></script>
+{% endblock %}

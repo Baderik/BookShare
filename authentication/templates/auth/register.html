@@ -24,9 +24,11 @@
                 <span class="title">
                     Регистрация
                 </span>
-                    <form action="">
-                        <input type="text" placeholder="Почта">
+                    <form action="/auth/" method="POST">
+                        {% csrf_token %}
+                        {{ form.email }}
                         <span class="blur">
+                            <span class="message"></span>
                             Регистрируясь, вы соглашаетесь
                             с нашей <a href="">Политикой конфиденциальности</a>
                         </span>
@@ -44,4 +46,7 @@
             </div>
         </div>
     </main>
+{% endblock %}
+{% block Footer %}
+    <script src="{% static 'javascript/auth/index.js' %}"></script>
 {% endblock %}

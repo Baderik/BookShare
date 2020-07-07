@@ -1,20 +1,55 @@
-@import "../../../../../static/stylesheet/less/base.less";
-@import "../../../../../static/stylesheet/less/socialIcons.less";
+@import "../../../../../index/static/stylesheet/less/base.less";
+@import "../../../../../index/static/stylesheet/less/socialIcons.less";
 
+// Message
+.message {
+  display: none;
+  text-align: center;
+  margin-bottom: 2rem;
+  span {
+    background-color: rgb(@dark, 40%);
+    color: @font;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+  }
+}
 // Main
+.main {
+  &-img {
+    text-align: center;
+    display: none;
+    margin-bottom: 1rem;
+    img {
+      max-height: 36rem;
+      max-width: calc(100% - 2rem - 1rem);
+    }
+    i {
+        margin-left: 1rem;
+        font-size: 2rem;
+        position: absolute;
+        z-index: 3;
+      }
+  }
+}
 .profile {
   .image {
     text-align: left;
     display: table;
-    height: 36rem;
     &-block {
       display: table-cell;
       vertical-align: middle;
+      height: 36rem;
+      i {
+        margin-left: 1rem;
+        font-size: 2rem;
+        position: absolute;
+        z-index: 3;
+      }
     }
     img {
-      height: 80%;
-      max-width: 100%;
-      //transform: translateX(4px);
+      cursor: pointer;
+      max-height: 80%;
+      max-width: calc(100% - 2rem - 1rem);
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
@@ -47,19 +82,9 @@
         width: 70%;
       }
     }
-    .image {
-      &-block {
-        text-align: center;
-        display: none;
-        img {
-          display: inline-block;
-          max-height: 18rem;
-        }
-      }
-    }
   }
 }
-.connect, .social {
+.connect, .social, .password {
   display: block;
   margin: 3rem 0;
 
@@ -87,6 +112,38 @@
     background-color: @dark-light;
   }
 }
+// Connect
+.email {
+  position: relative;
+  .status {
+    position: absolute;
+    left: -3rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    &.times {
+      color: @danger;
+    }
+    &.accept {
+      color: @phone;
+    }
+    &.edit {
+      display: none;
+      color: @blur;
+    }
+  }
+}
+// password
+.password {
+  label {
+    input {
+      width: 60%;
+    }
+  }
+}
+// Image form
+form.image-form {
+  display: none;
+}
 // Extra large
 @media (min-width: 1200px) {
 
@@ -99,7 +156,7 @@
 @media (max-width: 991px) {
   .profile {
     &-block {
-      .image-block {
+      .main-img {
         display: block;
       }
       span{

@@ -1,21 +1,21 @@
 //@import "base.less";
 //@import "articles.less";
 //@import "socialIcons.less";
-@import "../../../../../static/stylesheet/less/base.less";
-@import "../../../../../static/stylesheet/less/articles.less";
-@import "../../../../../static/stylesheet/less/socialIcons.less";
+@import "../../../../../index/static/stylesheet/less/base.less";
+@import "../../../../../index/static/stylesheet/less/articles.less";
+@import "../../../../../index/static/stylesheet/less/socialIcons.less";
 // Main
 .profile {
   .image {
     text-align: left;
     display: table;
-    height: 36rem;
     &-block {
+      height: 36rem;
       display: table-cell;
       vertical-align: middle;
     }
     img {
-      height: 80%;
+      max-height: 80%;
       max-width: 100%;
       //transform: translateX(4px);
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -65,13 +65,11 @@
         cursor: default;
         padding-left: 7rem;
         font-size: 2rem;
-
         &-full {
           left: 7rem;
           top: 0;
           position: absolute;
         }
-
         .star {
           width: 2.25rem;
           display: inline-block;
@@ -87,7 +85,8 @@
         display: none;
         img {
           display: inline-block;
-          max-height: 18rem;
+          max-height: 36rem;
+          max-width: 100%;
         }
       }
     }
@@ -167,6 +166,9 @@ hr {
     margin-bottom: 2rem;
   }
 }
+.button-out {
+  display: none;
+}
 // Extra large
 @media (min-width: 1200px) {
 
@@ -209,4 +211,28 @@ hr {
 // Extra small
 @media (max-width: 575px) {
 
+}
+// Popup
+
+.popup {
+  .question {
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    display: inline-block;
+    margin-bottom: 3rem;
+  }
+  .button-out {
+    width: calc(50% - 1.5rem - 1rem);
+    display: inline-block;
+    &.button-right {
+      width: calc(50% - 1.5rem - 1rem);
+      text-align: right;
+    }
+    &.button-left {
+      width: calc(50% - 1.5rem - 3rem);
+      margin-left: 6rem;
+      text-align: left;
+    }
+  }
 }

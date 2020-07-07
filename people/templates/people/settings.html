@@ -7,27 +7,43 @@
 {% block Content %}
     <main>
         <div class="container">
+            <div class="row">
+                <div class="message col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                    <span>
+                        Проверьте правильно ли заполнены поля
+                    </span>
+                </div>
+            </div>
             <div class="row profile no-gutters">
-                <form class="col-12 col-lg-6 profile-block">
+                <form class="col-12 col-lg-6 profile-block"
+                      action="/user/{{ user.id }}/"
+                      method="POST">
+                    {% csrf_token %}
                     <div class="main">
-                        <div class="image-block">
-                            <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                        <div class="main-img">
+                            <img src="/image/{{ form.image.value }}" alt=""
+                                 class="my-image">
+                            <i class="fas fa-times" title="Удалить фото"></i>
                         </div>
                         <label>
                             Фамилия:
-                            <input type="text" placeholder="Моя фамилия">
+                            {{ form.surname }}
+                            <!--<input type="text" placeholder="Моя фамилия">-->
                         </label>
                         <label>
                             Имя:
-                            <input type="text" placeholder="Моё имя">
+                            {{ form.name }}
+                            <!--<input type="text" placeholder="Моё имя">-->
                         </label>
                         <label>
                             Отчество:
-                            <input type="text" placeholder="Моё отчество">
+                            {{ form.middle_name }}
+                            <!--<input type="text" placeholder="Моё отчество">-->
                         </label>
                         <label>
                             Обо мне:
-                            <textarea placeholder="Пару слов"></textarea>
+                            {{ form.about }}
+                            <!--<textarea placeholder="Пару слов"></textarea>-->
                         </label>
                     </div>
                     <div class="connect">
@@ -35,13 +51,29 @@
                             <hr>
                             <span class="title">Связь</span>
                         </div>
-                        <label>
+                        <label class="email">
+                            <i class="far fa-check-circle accept status"
+                               title="Подтверждён"
+                            {% if not email %}
+                                style="display: none"
+                            {% endif %}
+                            ></i>
+                            <i class="far fa-times-circle times status"
+                               title="Не подтверждён"
+                           {% if email %}
+                                style="display: none"
+                            {% endif %}
+                            ></i>
+                            <i class="far fa-stop-circle edit status"
+                                title="Изменён"
+                            ></i>
                             E-mail:
-                            <input type="text" placeholder="Мой email">
+                            {{ form.email }}
+                            <!--<input type="text" placeholder="Мой email">-->
                         </label>
                         <label>
                             Телефон:
-                            <input type="text" placeholder="Мой телефон">
+                            {{ form.phone }}
                         </label>
                     </div>
                     <div class="social">
@@ -58,16 +90,47 @@
                             <i class="fa fa-odnoklassniki"></i>
                         </div>
                     </div>
+                    <div class="password">
+                        <div class="nav">
+                            <hr>
+                            <span class="title">Пароль</span>
+                        </div>
+                        <label>
+                            Новый пароль:
+                            {{ form.password }}
+                            <!--<input type="text" placeholder="Мой email">-->
+                        </label>
+                        <label>
+                            Повтори пароль:
+                            {{ form.password_again }}
+                        </label>
+                    </div>
                     <div class="button-out">
                         <button class="my-button">Сохранить</button>
                     </div>
+                    {{ form.image }}
                 </form>
                 <div class="col-6 image">
                     <div class="image-block">
-                        <img src="{% static 'img/people/profile.png' %}" alt="" class="my-image">
+                        <img src="/image/{{ form.image.value }}" alt=""
+                             class="my-image" title="Сменить аватарку">
+                        <i class="fas fa-times" title="Удалить фото"></i>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <form action="/image/" method="POST" class="image-form">
+        {% csrf_token %}
+        {{ imageForm.image }}
+    </form>
+{% endblock %}
+{% block Footer %}
+    <script>
+        let emailAccept = {% if email %}true{% else %}false{% endif %} ;
+        let emailBase = "{{ form.email.value }}";
+        let avatarBase = "{% static 'img/people/user.jpg' %}";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'javascript/people/settings.js' %}"></script>
 {% endblock %}

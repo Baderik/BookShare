@@ -1,6 +1,6 @@
 //@import "base.less";
-@import "../../../../../static/stylesheet/less/base.less";
-@import "../../../../../static/stylesheet/less/articles.less";
+@import "../../../../../index/static/stylesheet/less/base.less";
+@import "../../../../../index/static/stylesheet/less/articles.less";
 
 body {
   background: @dark url("../../../img/articles/background.png") top center no-repeat;
@@ -106,6 +106,15 @@ main {
   }
   &:hover {
     animation: interface-color 0.5s forwards;
+  }
+  &.selected {
+    color: @interface;
+    &:hover {
+      animation: interface-out-color .5s forwards;
+    }
+    &:not(:hover) {
+      animation: interface-color .5s forwards;
+    }
   }
 }
 .subject {

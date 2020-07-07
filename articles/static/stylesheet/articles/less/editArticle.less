@@ -1,30 +1,11 @@
 //@import "base.less";
 //@import "socialIcons.less";
 //@import "toggle.less";
-@import "../../../../../static/stylesheet/less/base.less";
-@import "../../../../../static/stylesheet/less/socialIcons.less";
-@import "../../../../../static/stylesheet/less/toggle.less";
+@import "../../../../../index/static/stylesheet/less/base.less";
+@import "../../../../../index/static/stylesheet/less/socialIcons.less";
+@import "../../../../../index/static/stylesheet/less/toggle.less";
 
 
-// Colors
-@close: #F44336;
-// Animation
-@keyframes close-out {
-  from {
-    color: @close;
-  }
-  to {
-    color: @font
-  }
-}
-@keyframes close {
-  from {
-    color: @font;
-  }
-  to {
-    color: @close;
-  }
-}
 // Base
 .nav {
     margin-bottom: 3rem;
@@ -49,7 +30,7 @@
       color: @interface;
     }
 }
-input {
+input, select {
   .med();
   font-size: 1.7rem;
   color:@font;
@@ -58,6 +39,18 @@ input {
   border: 0.3rem solid @dark-light;
   border-radius: 1rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+// Message
+.message {
+  display: none;
+  text-align: center;
+  margin-bottom: 2rem;
+  span {
+    background-color: rgb(@dark, 40%);
+    color: @font;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+  }
 }
 // Main
 .title {
@@ -98,7 +91,7 @@ input {
     top: 0;
     left: 0;
     width: 100%;
-    color: @close;
+    color: @danger;
     text-align: center;
     display: none;
     background-color: @dark;
@@ -121,33 +114,62 @@ input {
 }
 // Images
 .images-slick {
-  * {
-    margin-right: 1rem;
-  }
+  //* {
+  //  margin-right: 1rem;
+  //}
   .image-wrap {
     display: table;
-    height: 50rem; // Нужно менять относительно максимального изображения
+    height: 50rem;
     .image {
       display: table-cell;
       vertical-align: middle;
       &-block {
+        margin-right: 1rem;
         position: relative;
+        max-width: 100%;
+        img {
+          max-height: 50rem;
+          max-width: 100%;
+        }
         .fa-times {
           position: absolute;
           top: 0.5rem;
           right: 0.5rem;
-          color: @font;
           font-size: 2rem;
           cursor: pointer;
-          //z-index: 2;
-          &:not(:hover) {
-            animation: close-out 0.5s forwards;
-          }
+        }
+        .fa-star {
+          position: absolute;
+          top: 0.5rem;
+          right: 2.5rem;
+          font-size: 1.8rem;
+          cursor: pointer;
           &:hover {
-            animation: close 0.5s forwards;
+            animation: icon-star 0.5s forwards;
+          }
+          &:not(:hover) {
+            animation: icon-star-out 0.5s forwards;
           }
         }
+        .avatar {
+          cursor: default;
+          color: @interface;
+          &:hover {
+            animation: none;
+          }
+          &:not(:hover) {
+            animation: none;
+          }
+        }
+        .fa-plus {
+          //position: absolute;
+          cursor: pointer;
+          font-size: 10rem;
+        }
       }
+    }
+    &.add-slide {
+      width: 9.75rem;
     }
   }
 }
@@ -163,6 +185,7 @@ textarea {
   border: none;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 7rem;
+  padding: 1rem 2rem;
 }
 .desc {
   .name {
@@ -180,9 +203,10 @@ textarea {
   color:@font;
 }
 .condition, .cost {
-  input {
+  input, select {
     margin-left: 8rem;
     width: 16rem;
+    margin-bottom: 1rem;
   }
 }
 .choose-cost {
@@ -211,6 +235,9 @@ textarea {
   span {
     line-height: 3rem;
     display: inline-block;
+    &.disabled {
+      color: @blur;
+    }
   }
 }
 .accounts {
@@ -229,13 +256,51 @@ i {
 .button-out {
   margin-top: 10rem;
 }
+// Form
+.article-form {
+  #id_images {
+    display: none;
+  }
+  #id_tags {
+    display: none;
+  }
+}
+.image-form {
+  display: none;
+}
+// Popup
+.popup {
+  &-block {
+    .tag {
+      margin-bottom: 1rem;
+      &.selected {
+        color: @interface;
+        &:hover {
+          animation: interface-out-color .5s forwards;
+        }
+        &:not(:hover) {
+          animation: interface-color .5s forwards;
+        }
+      }
+    }
+  }
+  &-close {
+    top: -2rem
+  }
+}
 // Extra large
 @media (min-width: 1200px) {
 
 }
 // Large
 @media (max-width: 1199px) {
-
+  .images-slick {
+    .image-wrap {
+      .image-block {
+        max-width: 50%;
+      }
+    }
+  }
 }
 // Medium
 @media (max-width: 991px) {
@@ -248,11 +313,6 @@ i {
       margin-bottom: 1rem;
     }
   }
-  //.images-slick {
-  //  .image-wrap {
-  //    max-width: 100%;
-  //  }
-  //}
 }
 // Small
 @media (max-width: 767px) {
