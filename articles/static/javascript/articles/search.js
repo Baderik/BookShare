@@ -61,6 +61,7 @@ function addNewArticles(response) {
     if (response.articles.length) $(".nothing").hide();
     else {
         $(".nothing").show();
+        $(".articles-button").hide();
         nextArticle = -1;
         return;
     }
