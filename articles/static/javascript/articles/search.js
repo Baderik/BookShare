@@ -1,4 +1,5 @@
-$(function () {$(".search-form #id_firstArticle").val(0);
+$(function () {
+    $(".search-form #id_firstArticle").val(0);
     setTags();
     $(".subject").slick({
         dots: false,
@@ -18,26 +19,30 @@ $(function () {$(".search-form #id_firstArticle").val(0);
     });
     $(".search-form").on("submit", function (event) {
         tagsField();
+        if (!update) $(".search-form #id_firstArticle").val(0);
         formRequest(event,
             function (response) {
                 if (response.code === "200") {
-                    $(".article").remove();
+                    if (!update)
+                        $(".article").remove();
                     addNewArticles(response);
                 }
                 else
-                    setMessage(response.message, "red");
-                $(".search-form #id_firstArticle").val(0);
-                nextArticle = 0;
+                    console.log(response.message, "red");
+                if (!update)
+                    $(".search-form #id_firstArticle").val(0);
+                update = false;
             },
             function (response) {
-                setMessage("Произошла ошибка", "red");
-                $(".search-form #id_firstArticle").val(0);
-                nextArticle = 0;
+                console.log("Произошла ошибка", "red");
+                if (!update)
+                    $(".search-form #id_firstArticle").val(0);
+                update = false;
             });
     });
     $(".search-form").submit();
     $(".articles-button").on("click", function (event) {
-        $(".search-form #id_firstArticle").val(nextArticle);
+        update = true;
         $(".search-form").submit();
     });
     $(".tags .tag").on("click",
@@ -52,17 +57,18 @@ $(function () {$(".search-form #id_firstArticle").val(0);
        }
     });
 })
-let nextArticle = 0;
+let update = true;
 function addNewArticles(response) {
-    if (nextArticle === -1) return;
+    let nextField = $(".search-form #id_firstArticle");
+    if (nextField.val() === "-1") return;
 
-    nextArticle = response.nextArticle;
+    nextField.val(response.nextArticle);
 
     if (response.articles.length) $(".nothing").hide();
     else {
         $(".nothing").show();
         $(".articles-button").hide();
-        nextArticle = -1;
+        nextField.val(-1);
         return;
     }
     $.each(response.articles, function (index, article) {
@@ -115,7 +121,7 @@ function addNewArticles(response) {
     });
     $(".link").on("click", link)
 
-    if (nextArticle === -1) $(".articles-button").hide();
+    if (nextField.val() === "-1") $(".articles-button").hide();
     else $(".articles-button").show();
 }
 function setTags() {
